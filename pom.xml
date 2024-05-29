@@ -46,13 +46,12 @@
 
     <scm>
         <connection>
-            scm:git:git@10.64.170.11:2424/cinfe-estadistica/statistical-system/lib-core-ejercito-statistics-repository.git
+            scm:git:git@github.com:dbacilio88/lib-core-ejercito-statistics-repository.git
         </connection>
         <developerConnection>
-            scm:git:git@10.64.170.11:2424/cinfe-estadistica/statistical-system/lib-core-ejercito-statistics-repository.git
+            scm:git:git@github.com:dbacilio88/lib-core-ejercito-statistics-repository.git
         </developerConnection>
-        <url>http://10.64.170.11:8929/cinfe-estadistica/statistical-system/lib-core-ejercito-statistics-repository.git
-        </url>
+        <url>https://github.com/dbacilio88/lib-core-ejercito-statistics-repository.git</url>
     </scm>
 
     <dependencies>

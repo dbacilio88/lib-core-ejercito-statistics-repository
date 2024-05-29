@@ -43,72 +43,72 @@ public class EpStatisticsDiradneEntity extends EpStatisticsBaseEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STD_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stdDocument;
 
 
     @Column(name = "STD_AGREEMENTS_CM_INST_PRIVATE")
-    private Double stDiradneAgreementsCmInstPrivate;
+    private Double stdAgreementsCmInstPrivate;
 
     @Column(name = "STD_AGREEMENTS_CM_INST_PUBLIC")
-    private Double stDiradneAgreementsCmInstPublic;
+    private Double stdAgreementsCmInstPublic;
 
     @Column(name = "STD_AGREEMENTS_CM_GOB_LOCAL")
-    private Double stDiradneAgreementsCmGobLocal;
+    private Double stdAgreementsCmGobLocal;
 
     @Column(name = "STD_AGREEMENTS_CE_INST_PRIVATE")
-    private Double stDiradneAgreementsCeInstPrivate;
+    private Double stdAgreementsCeInstPrivate;
 
     @Column(name = "STD_AGREEMENTS_CE_INST_PUBLIC")
-    private Double stDiradneAgreementsCeInstPublic;
+    private Double stdAgreementsCeInstPublic;
 
     @Column(name = "STD_AGREEMENTS_CE_GOB_LOCAL")
-    private Double stDiradneAgreementsCeGobLocal;
+    private Double stdAgreementsCeGobLocal;
 
     @Column(name = "STD_RISKS_MILITARY_ACTIONS_REPORT")
-    private Double stDiradneRisksMilitaryActionsReport;
+    private Double stdRisksMilitaryActionsReport;
 
     @Column(name = "STD_RISKS_TSUNAMI")
-    private Double stDiradneRisksTsunami;
+    private Double stdRisksTsunami;
 
     @Column(name = "STD_RISKS_CIRD")
-    private Double stDiradneRisksCird;
+    private Double stdRisksCird;
 
     @Column(name = "STD_RISKS_TRAINING_ENTITIES")
-    private Double stDiradneRisksTrainingEntities;
+    private Double stdRisksTrainingEntities;
 
     @Column(name = "STD_SUPPORT_POPULATION_AC")
-    private Double stDiradneSupportPopulationAc;
+    private Double stdSupportPopulationAc;
 
     @Column(name = "STD_SUPPORT_POPULATION_AH")
-    private Double stDiradneSupportPopulationAh;
+    private Double stdSupportPopulationAh;
 
     @Column(name = "STD_SUPPORT_POPULATION_PB")
-    private Double stDiradneSupportPopulationPb;
+    private Double stdSupportPopulationPb;
 
     @Column(name = "STD_ROAD_CONSTRUCTION")
-    private Double stDiradneRoadConstruction;
+    private Double stdRoadConstruction;
 
     @Column(name = "STD_ROAD_MAINTENANCE")
-    private Double stDiradneRoadMaintenance;
+    private Double stdRoadMaintenance;
 
     @Column(name = "STD_ROAD_REHABILITATION")
-    private Double stDiradneRoadRehabilitation;
+    private Double stdRoadRehabilitation;
 
     @Column(name = "STD_ROAD_PB")
-    private Double stDiradneRoadPb;
+    private Double stdRoadPb;
 
     @Column(name = "STD_ENVIRONMENTAL_ACTIVITIES")
-    private Double stDiradneEnvironmentalActivities;
+    private Double stdEnvironmentalActivities;
 
     @Column(name = "STD_ENVIRONMENTAL_MANAGEMENT")
-    private Double stDiradneEnvironmentalManagement;
+    private Double stdEnvironmentalManagement;
 
     @Column(name = "STD_ENVIRONMENTAL_COMPLIANCE")
-    private Double stDiradneEnvironmentalCompliance;
+    private Double stdEnvironmentalCompliance;
 
     @Column(name = "STD_ENVIRONMENTAL_MITIGATION")
-    private Double stDiradneEnvironmentalMitigation;
+    private Double stdEnvironmentalMitigation;
 
     @Column(name = "STD_ENVIRONMENTAL_STRENGTHENING")
-    private Double stDiradneEnvironmentalStrengthening;
+    private Double stdEnvironmentalStrengthening;
 }

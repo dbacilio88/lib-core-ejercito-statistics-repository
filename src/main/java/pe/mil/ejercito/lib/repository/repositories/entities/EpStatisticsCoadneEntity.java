@@ -43,69 +43,69 @@ public class EpStatisticsCoadneEntity extends EpStatisticsBaseEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STC_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stcDocument;
 
     @Column(name = "STC_AST_OO")
-    private Double stCoadneAstOo;
+    private Double stcAstOo;
 
     @Column(name = "STC_AST_TS")
-    private Double stCoadneAstTs;
+    private Double stcAstTs;
 
     @Column(name = "STC_AST_EC")
-    private Double stCoadneAstEc;
+    private Double stcAstEc;
 
     @Column(name = "STC_ASA_OO")
-    private Double stCoadneAsaOo;
+    private Double stcAsaOo;
 
     @Column(name = "STC_ASA_TS")
-    private Double stCoadneAsaTs;
+    private Double stcAsaTs;
 
     @Column(name = "STC_ASA_EC")
-    private Double stCoadneAsaEc;
+    private Double stcAsaEc;
 
     @Column(name = "STC_DHAREA")
-    private Double stCoadneDhArea;
+    private Double stcDhArea;
 
     @Column(name = "STC_DH_OO")
-    private Double stCoadneDhOo;
+    private Double stcDhOo;
 
     @Column(name = "STC_DH_TCOS")
-    private Double stCoadneDhTcos;
+    private Double stcDhTcos;
 
     @Column(name = "STC_DH_AREA_TO_DEMINE")
-    private Double stCoadneDhAreaToDemine;
+    private Double stcDhAreaToDemine;
 
     @Size(max = 200)
     @Column(name = "STC_AC_DPTO", length = 200)
-    private String stCoadneAcDpto;
+    private String stcAcDpto;
 
     @Size(max = 200)
     @Column(name = "STC_AC_PROV", length = 200)
-    private String stCoadneAcProv;
+    private String stcAcProv;
 
     @Size(max = 200)
     @Column(name = "STC_AC_DIST", length = 200)
-    private String stCoadneAcDist;
+    private String stcAcDist;
 
     @Size(max = 200)
     @Column(name = "STC_AC_TYPE_ACTIVITY", length = 200)
-    private String stCoadneAcTypeActivity;
+    private String stcAcTypeActivity;
 
     @Size(max = 200)
     @Column(name = "STC_AC_DATE_INIT", length = 200)
-    private String stCoadneAcDateInit;
+    private String stcAcDateInit;
 
     @Size(max = 200)
     @Column(name = "STC_AC_DATE_END", length = 200)
-    private String stCoadneAcDateEnd;
+    private String stcAcDateEnd;
 
     @Column(name = "STC_AC_BENEFITED_POPULATION")
-    private Double stCoadneAcBenefitedPopulation;
+    private Double stcAcBenefitedPopulation;
 
     @Column(name = "STC_AC_METERING")
-    private Double stCoadneAcMetering;
+    private Double stcAcMetering;
 
     @Size(max = 200)
     @Column(name = "STC_AC_TYPE_OF_CIVIC_ACTION", length = 200)
-    private String stCoadneAcTypeOfCivicAction;
+    private String stcAcTypeOfCivicAction;
 }

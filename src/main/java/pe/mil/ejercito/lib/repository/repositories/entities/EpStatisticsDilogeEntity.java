@@ -43,70 +43,70 @@ public class EpStatisticsDilogeEntity extends EpStatisticsDateEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STD_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stdDocument;
 
 
     @Size(max = 200)
     @Column(name = "STD_PMBSO", length = 200)
-    private String stDilogePmbso;
+    private String stdPmbso;
 
     @Size(max = 200)
     @Column(name = "STD_REQUIREMENTS", length = 200)
-    private String stDilogeRequirements;
+    private String stdRequirements;
 
     @Column(name = "STD_COLOGE")
-    private Double stDilogeCologe;
+    private Double stdCologe;
 
     @Column(name = "STD_COGAE")
-    private Double stDilogeCogae;
+    private Double stdCogae;
 
     @Column(name = "STD_COSALE")
-    private Double stDilogeCosale;
+    private Double stdCosale;
 
     @Column(name = "STD_COEDE")
-    private Double stDilogeCoede;
+    private Double stdCoede;
 
     @Column(name = "STD_COPERE")
-    private Double stDilogeCopere;
+    private Double stdCopere;
 
     @Column(name = "STD_COTE")
-    private Double stDilogeCote;
+    private Double stdCote;
 
     @Column(name = "STD_AE")
-    private Double stDilogeAe;
+    private Double stdAe;
 
     @Column(name = "STD_IDE")
-    private Double stDilogeIde;
+    private Double stdIde;
 
     @Column(name = "STD_IIDE")
-    private Double stDilogeIIDe;
+    private Double stdIIDe;
 
     @Column(name = "STD_IIIDE")
-    private Double stDilogeIIIDe;
+    private Double stdIIIDe;
 
     @Column(name = "STD_IVDE")
-    private Double stDilogeIVDe;
+    private Double stdIVDe;
 
     @Column(name = "STD_VDE")
-    private Double stDilogeVde;
+    private Double stdVde;
 
     @Size(max = 200)
     @Column(name = "STD_SUMMARY", length = 200)
-    private String stDilogeSummary;
+    private String stdSummary;
 
     @Column(name = "STD_CURRENT")
-    private Double stDilogeCurrent;
+    private Double stdCurrent;
 
     @Column(name = "STD_NEW")
-    private Double stDilogeNew;
+    private Double stdNew;
 
     @Column(name = "STD_UPDATE")
-    private Double stDilogeUpdate;
+    private Double stdUpdate;
 
     @Column(name = "STD_PROGRESS")
-    private Double stDilogeProgress;
+    private Double stdProgress;
 
     @Size(max = 200)
     @Column(name = "STD_PRODUCTS", length = 200)
-    private String stDilogeProducts;
+    private String stdProducts;
 }

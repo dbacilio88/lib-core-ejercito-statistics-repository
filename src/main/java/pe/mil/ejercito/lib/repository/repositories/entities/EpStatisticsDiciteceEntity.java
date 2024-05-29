@@ -43,90 +43,90 @@ public class EpStatisticsDiciteceEntity extends EpStatisticsBaseEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STD_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stdDocument;
 
     @Size(max = 500)
     @Column(name = "STD_INVESTIGATION_AREA", length = 500)
-    private String stDiciteceInvestigationArea;
+    private String stdInvestigationArea;
 
     @Size(max = 1000)
     @Column(name = "STD_PROJECT_NAME", length = 1000)
-    private String stDiciteceProjectName;
+    private String stdProjectName;
 
     @Size(max = 1000)
     @Column(name = "STD_WORKSHOP_NAME", length = 1000)
-    private String stDiciteceWorkshopName;
+    private String stdWorkshopName;
 
     @Column(name = "STD_PERSONAL_OO")
-    private Double stDicitecePersonalOO;
+    private Double stdPersonalOO;
 
     @Column(name = "STD_PERSONAL_TCOS")
-    private Double stDicitecePersonalTcos;
+    private Double stdPersonalTcos;
 
     @Column(name = "STD_PERSONAL_CIVIL")
-    private Double stDicitecePersonalCivil;
+    private Double stdPersonalCivil;
 
     @Column(name = "STD_PERSONAL_EXTERNAL")
-    private Double stDicitecePersonalExternal;
+    private Double stdPersonalExternal;
 
     @Column(name = "STD_PRE_PERSONAL_TOTAL")
-    private Double stDicitecePrePersonalTotal;
+    private Double stdPrePersonalTotal;
 
     @Column(name = "STD_PIS_PERCENTAGE_ENE")
-    private Double stDicitecePisPercentageEne;
+    private Double stdPisPercentageEne;
 
     @Column(name = "STD_PIS_FINANCIAL_ENE")
-    private Double stDicitecePisFinancialEne;
+    private Double stdPisFinancialEne;
 
     @Column(name = "STD_PIS_PERCENTAGE_FEB")
-    private Double stDicitecePisPercentageFeb;
+    private Double stdPisPercentageFeb;
 
     @Column(name = "STD_PIS_FINANCIAL_FEB")
-    private Double stDicitecePisFinancialFeb;
+    private Double stdPisFinancialFeb;
 
     @Column(name = "STD_PIS_PERCENTAGE_TOTAL")
-    private Double stDicitecePisPercentageTotal;
+    private Double stdPisPercentageTotal;
 
     @Column(name = "STD_PIS_FINANCIAL_TOTAL")
-    private Double stDicitecePisFinancialTotal;
+    private Double stdPisFinancialTotal;
 
 
     @Column(name = "STD_WORKSHOP_DEPENDENCY_ASSISTANCE")
-    private Double stDiciteceWorkshopDependencyAssistance;
+    private Double stdWorkshopDependencyAssistance;
 
     @Column(name = "STD_AGREEMENTS_TYPE_TRAINING_OO")
-    private Double stDiciteceAgreementsTypeTrainingOO;
+    private Double stdAgreementsTypeTrainingOO;
 
     @Column(name = "STD_AGREEMENTS_TYPE_TRAINING_TCOS")
-    private Double stDiciteceAgreementsTypeTrainingTcos;
+    private Double stdAgreementsTypeTrainingTcos;
 
     @Column(name = "STD_AGREEMENTS_TYPE_TRAINING_CIVIL")
-    private Double stDiciteceAgreementsTypeTrainingCivil;
+    private Double stdAgreementsTypeTrainingCivil;
 
     @Column(name = "STD_AGREEMENTS_TYPE_ID_OO")
-    private Double stDiciteceAgreementsTypeIdOO;
+    private Double stdAgreementsTypeIdOO;
 
     @Column(name = "STD_AGREEMENTS_TYPE_ID_TCOS")
-    private Double stDiciteceAgreementsTypeIdTcos;
+    private Double stdAgreementsTypeIdTcos;
 
     @Column(name = "STD_AGREEMENTS_TYPE_ID_CIVIL")
-    private Double stDiciteceAgreementsTypeIdCivil;
+    private Double stdAgreementsTypeIdCivil;
 
     @Column(name = "STD_AGREEMENTS_PERSONAL_TRAINING_OO")
-    private Double stDiciteceAgreementsPersonalTrainingOO;
+    private Double stdAgreementsPersonalTrainingOO;
 
     @Column(name = "STD_AGREEMENTS_PERSONAL_TRAINING_TCOS")
-    private Double stDiciteceAgreementsPersonalTrainingTcos;
+    private Double stdAgreementsPersonalTrainingTcos;
 
     @Column(name = "STD_AGREEMENTS_PERSONAL_TRAINING_CIVIL")
-    private Double stDiciteceAgreementsPersonalTrainingCivil;
+    private Double stdAgreementsPersonalTrainingCivil;
 
     @Column(name = "STD_AGREEMENTS_PERSONAL_ID_OO")
-    private Double stDiciteceAgreementsPersonalIdOO;
+    private Double stdAgreementsPersonalIdOO;
 
     @Column(name = "STD_AGREEMENTS_PERSONAL_ID_TCOS")
-    private Double stDiciteceAgreementsPersonalIdTcos;
+    private Double stdAgreementsPersonalIdTcos;
 
     @Column(name = "STD_AGREEMENTS_PERSONAL_ID_CIVIL")
-    private Double stDiciteceAgreementsPersonalIdCivil;
+    private Double stdAgreementsPersonalIdCivil;
 }

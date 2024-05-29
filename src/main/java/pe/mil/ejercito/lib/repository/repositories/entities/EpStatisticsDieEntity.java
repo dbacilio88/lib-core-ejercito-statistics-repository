@@ -43,17 +43,17 @@ public class EpStatisticsDieEntity extends EpStatisticsDateEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STD_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stdDocument;
 
     @Size(max = 120)
     @Column(name = "STD_ACTION_OOTT", length = 120)
-    private String stDieActionOoTt;
+    private String stdActionOoTt;
 
     @Size(max = 120)
     @Column(name = "STD_ACTIVITIES", length = 120)
-    private String stDieActivities;
+    private String stdActivities;
 
     @Size(max = 200)
     @Column(name = "STD_TYPES_MEASUREMENTS", length = 200)
-    private String stDieTypesMeasurements;
+    private String stdTypesMeasurements;
 }

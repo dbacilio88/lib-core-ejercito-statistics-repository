@@ -35,18 +35,6 @@ public class StatisticsBaseDto implements Serializable {
     private String dependency;
     private String otherState;
     private String nro;
-    private double ene;
-    private double feb;
-    private double mar;
-    private double abr;
-    private double may;
-    private double jun;
-    private double jul;
-    private double ago;
-    private double set;
-    private double oct;
-    private double nov;
-    private double dic;
     private double total;
     private String typeSheet;
     private String nameSheet;

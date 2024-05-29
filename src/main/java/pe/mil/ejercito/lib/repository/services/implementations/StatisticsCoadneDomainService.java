@@ -130,7 +130,7 @@ public class StatisticsCoadneDomainService extends ReactorServiceBase implements
                 }
 
                 persistenceEntity.setUuId(UUID.randomUUID().toString());
-                persistenceEntity.setStDocument(documentRegisterEntity.get());
+                persistenceEntity.setStcDocument(documentRegisterEntity.get());
                 persistenceEntity.setStCreatedDate(Instant.now());
 
                 final EpStatisticsCoadneEntity entityResult = this.repository.save(persistenceEntity);
@@ -163,10 +163,10 @@ public class StatisticsCoadneDomainService extends ReactorServiceBase implements
                 }
 
                 final EpStatisticsCoadneEntity entityUpdate = statisticsAeEntity.get();
-                entityUpdate.setStDocument(documentRegisterEntity.get());
+                entityUpdate.setStcDocument(documentRegisterEntity.get());
                 entityUpdate.setStUpdatedDate(Instant.now());
                 final EpStatisticsCoadneEntity entityResult = this.repository.save(entityUpdate);
-                entityUpdate.setStDocument(documentRegisterEntity.get());
+                entityUpdate.setStcDocument(documentRegisterEntity.get());
                 return Mono.just(this.mapper.mapperToDto(entityResult));
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));

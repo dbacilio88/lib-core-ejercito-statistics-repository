@@ -43,57 +43,57 @@ public class EpStatisticsDeEntity extends EpStatisticsDateEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STD_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stdDocument;
 
     @Column(name = "STD_ACAS_MACHINERY")
-    private Double stDeAcasMachinery;
+    private Double stdAcasMachinery;
 
     @Column(name = "STD_ACAS_HEALTH")
-    private Double stDeAcasHealth;
+    private Double stdAcasHealth;
 
     @Column(name = "STD_ACAS_SOCIAL")
-    private Double stDeAcasSocial;
+    private Double stdAcasSocial;
 
     @Column(name = "STD_PCIAPNP_SOCIAL_CONFLICT")
-    private Double stDeAcasSocialConflict;
+    private Double stdAcasSocialConflict;
 
     @Column(name = "STD_PCIAPNP_ILLEGAL_MINING")
-    private Double stDePciAPnpIlegalMining;
+    private Double stdPciAPnpIlegalMining;
 
     @Column(name = "STD_PCIAPNP_TDI")
-    private Double stDePciAPnpTdi;
+    private Double stdPciAPnpTdi;
 
     @Column(name = "STD_PCIAPNP_TIM")
-    private Double stDePciAPnpTim;
+    private Double stdPciAPnpTim;
 
     @Column(name = "STD_PCIAPNP_FOREST_FIRE")
-    private Double stDePciAPnpForestFire;
+    private Double stdPciAPnpForestFire;
 
     @Column(name = "STD_AR_ECONOMIC_SOCIAL")
-    private Double stDeArEconomicSocial;
+    private Double stdArEconomicSocial;
 
     @Column(name = "STD_AR_SCIENCE_TECHNOLOGY")
-    private Double stDeArScienceTechnology;
+    private Double stdArScienceTechnology;
 
     @Column(name = "STD_AR_ARCHAEOLOGICAL_HISTORICAL")
-    private Double stDeArArchaeologicalHistorical;
+    private Double stdArArchaeologicalHistorical;
 
     @Column(name = "STD_AR_ANTARCTIC_AMAZON_AFFAIRS")
-    private Double stDeArAntarcticAmazonAffairs;
+    private Double stdArAntarcticAmazonAffairs;
 
     @Column(name = "STD_AR_ENVIRONMENTAL_PROTECTION")
-    private Double stDeArEnvironmentalProtection;
+    private Double stdArEnvironmentalProtection;
 
     @Column(name = "STD_HITO_AMOUNT")
-    private Double stDeHitoAmount;
+    private Double stdHitoAmount;
 
     @Column(name = "STD_HITO_ORDERS")
-    private Double stDeHitoOrders;
+    private Double stdHitoOrders;
 
     @Column(name = "STD_HITO_RECOGNITION")
-    private Double stDeHitoRecognition;
+    private Double stdHitoRecognition;
 
     @Column(name = "STD_HITO_MAINTENANCE")
-    private Double stDeHitoMaintenance;
+    private Double stdHitoMaintenance;
 
 }

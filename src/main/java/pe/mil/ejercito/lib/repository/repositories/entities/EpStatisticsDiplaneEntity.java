@@ -44,44 +44,44 @@ public class EpStatisticsDiplaneEntity extends EpStatisticsBaseEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STD_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity stdDocument;
 
     @Size(max = 500)
     @Column(name = "STD_STRATEGIC_OBJECTIVES", length = 500)
-    private String stDiplaneStrategicObjectives;
+    private String stdStrategicObjectives;
 
     @Column(name = "STD_STRATEGIC_ACTIVITIES")
-    private Double stDiplaneStrategicActivities;
+    private Double stdStrategicActivities;
 
     @Column(name = "STD_STRATEGIC_ADVANCE")
-    private Double stDiplaneStrategicAdvance;
+    private Double stdStrategicAdvance;
 
     @Size(max = 1000)
     @Column(name = "STD_ACTIVITIES", length = 1000)
-    private String stDiplaneActivities;
+    private String stdActivities;
 
     @Size(max = 1000)
     @Column(name = "STD_TASK", length = 1000)
-    private String stDiplaneTask;
+    private String stdTask;
 
     @Size(max = 10)
     @Column(name = "STD_PROCESS_NRO", length = 10)
-    private String stDiplaneProcessNro;
+    private String stdProcessNro;
 
     @Size(max = 1000)
     @Column(name = "STD_PROCESS_NAME", length = 1000)
-    private String stDiplaneProcessName;
+    private String stdProcessName;
 
     @Size(max = 100)
     @Column(name = "STD_PROCESS_TYPE", length = 100)
-    private String stDiplaneProcessType;
+    private String stdProcessType;
 
     @Column(name = "STD_PROCESS_LEVEL1")
-    private Double stDiplaneProcessLevel1;
+    private Double stdProcessLevel1;
 
     @Column(name = "STD_PROCESS_LEVEL2")
-    private Double stDiplaneProcessLevel2;
+    private Double stdProcessLevel2;
 
     @Column(name = "STD_PROCESS_TOTAL")
-    private Double stDiplaneProcessTotal;
+    private Double stdProcessTotal;
 }

@@ -43,28 +43,28 @@ public class EpStatisticsAeEntity extends EpStatisticsDateEntity {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STA_DOCUMENT", nullable = false)
-    private EpDocumentRegisterEntity stDocument;
+    private EpDocumentRegisterEntity staDocument;
 
     @Size(max = 120)
     @Column(name = "STA_MAINTENANCE", length = 120)
-    private String stAeMaintenance;
+    private String staMaintenance;
 
     @Size(max = 120)
     @Column(name = "STA_TYPE_HELICOPTER", length = 120)
-    private String stAeTypeHelicopter;
+    private String staTypeHelicopter;
 
     @Size(max = 120)
     @Column(name = "STA_AIRPLANE_REGISTRATION", length = 120)
-    private String stAeAirplaneRegistration;
+    private String staAirplaneRegistration;
 
     @Size(max = 120)
     @Column(name = "STA_HRS_MAINTENANCE")
-    private String stAeHrsMaintenance;
+    private String staHrsMaintenance;
 
     @Column(name = "STA_HRS_ASSIGNED")
-    private Double stAeHrsAssigned;
+    private Double staHrsAssigned;
 
     @Column(name = "STA_HRS_FLOWN")
-    private Double stAeHrsFlown;
+    private Double staHrsFlown;
 
 }

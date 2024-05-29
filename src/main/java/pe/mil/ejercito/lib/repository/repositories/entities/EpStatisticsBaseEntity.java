@@ -46,42 +46,6 @@ public abstract class EpStatisticsBaseEntity {
     @Column(name = "ST_NRO", length = 10)
     private String stNro;
 
-    @Column(name = "ST_ENE")
-    private Double stEne;
-
-    @Column(name = "ST_FEB")
-    private Double stFeb;
-
-    @Column(name = "ST_MAR")
-    private Double stMar;
-
-    @Column(name = "ST_ABR")
-    private Double stAbr;
-
-    @Column(name = "ST_MAY")
-    private Double stMay;
-
-    @Column(name = "ST_JUN")
-    private Double stJun;
-
-    @Column(name = "ST_JUL")
-    private Double stJul;
-
-    @Column(name = "ST_AGO")
-    private Double stAgo;
-
-    @Column(name = "ST_SET")
-    private Double stSet;
-
-    @Column(name = "ST_OCT")
-    private Double stOct;
-
-    @Column(name = "ST_NOV")
-    private Double stNov;
-
-    @Column(name = "ST_DIC")
-    private Double stDic;
-
     @Column(name = "ST_TOTAL")
     private Double stTotal;
 

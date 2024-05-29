@@ -130,7 +130,7 @@ public class StatisticsAeDomainService extends ReactorServiceBase implements ISt
                 }
 
                 persistenceEntity.setUuId(UUID.randomUUID().toString());
-                persistenceEntity.setStDocument(documentRegisterEntity.get());
+                persistenceEntity.setStaDocument(documentRegisterEntity.get());
                 persistenceEntity.setStCreatedDate(Instant.now());
 
                 final EpStatisticsAeEntity entityResult = this.repository.save(persistenceEntity);
@@ -163,10 +163,10 @@ public class StatisticsAeDomainService extends ReactorServiceBase implements ISt
                 }
 
                 final EpStatisticsAeEntity entityUpdate = statisticsAeEntity.get();
-                entityUpdate.setStDocument(documentRegisterEntity.get());
+                entityUpdate.setStaDocument(documentRegisterEntity.get());
                 entityUpdate.setStUpdatedDate(Instant.now());
                 final EpStatisticsAeEntity entityResult = this.repository.save(entityUpdate);
-                entityUpdate.setStDocument(documentRegisterEntity.get());
+                entityUpdate.setStaDocument(documentRegisterEntity.get());
                 return Mono.just(this.mapper.mapperToDto(entityResult));
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
