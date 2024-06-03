@@ -81,7 +81,10 @@ public class EpDocumentRegisterEntity {
 
     @Builder.Default
     @ToString.Exclude
-    @OneToMany(mappedBy = "stDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "staDocument", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EpStatisticsAeEntity> epStatisticsAes = new LinkedHashSet<>();
+
+    //TODO implementar entidades relacionadas a esta.
+
 
 }

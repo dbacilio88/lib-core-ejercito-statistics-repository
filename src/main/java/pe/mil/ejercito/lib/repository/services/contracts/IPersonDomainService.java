@@ -28,4 +28,5 @@ public interface IPersonDomainService extends
     IDeleteDomainEntity<Mono<PersonDto>, String> {
 
     Mono<List<PersonDto>> getAllEntities(String limit, String page, PageableDto pageable);
+    Mono<PersonDto> getByDocument(String document);
 }

@@ -1,6 +1,7 @@
 package pe.mil.ejercito.lib.repository.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pe.mil.ejercito.lib.repository.repositories.entities.EpPersonEntity;
@@ -25,4 +26,7 @@ import java.util.Optional;
 public interface IEpPersonRepository extends JpaRepository<EpPersonEntity, Long> {
 
     Optional<EpPersonEntity> findByUuId(String uuId);
+
+    @Query(name = "SELECT p FROM EpPersonEntity p WHERE p.peDocument = :document")
+    Optional<EpPersonEntity> findByDocument(String document);
 }

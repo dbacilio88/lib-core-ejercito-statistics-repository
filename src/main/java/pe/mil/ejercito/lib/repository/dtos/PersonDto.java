@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * PersonDto
@@ -46,6 +45,18 @@ public class PersonDto implements Serializable {
     @NotBlank
     private String lastName;
 
+    @Size(max = 8)
     @NotNull
-    private Instant dob;
+    @NotBlank
+    private String document;
+
+    @Size(max = 9)
+    @NotNull
+    @NotBlank
+    private String cip;
+
+    @Size(max = 50)
+    @NotNull
+    @NotBlank
+    private String email;
 }

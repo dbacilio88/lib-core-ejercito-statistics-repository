@@ -23,21 +23,25 @@ import java.util.List;
  * @since 19/05/2024
  */
 @Mapper(
-        componentModel = MappingConstants.ComponentModel.SPRING,
-        nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
+    componentModel = MappingConstants.ComponentModel.SPRING,
+    nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )
 public interface IPersonMapper {
     @Mapping(target = "uuId", source = "uuId")
     @Mapping(target = "peName", source = "name")
     @Mapping(target = "peLastname", source = "lastName")
-    @Mapping(target = "peDob", source = "dob")
+    @Mapping(target = "peChasqui", source = "email")
+    @Mapping(target = "peDocument", source = "document")
+    @Mapping(target = "peCip", source = "cip")
     @Mapping(target = "epUsers", ignore = true)
     EpPersonEntity mapperToEntity(PersonDto source);
 
     @Mapping(target = "uuId", source = "uuId")
     @Mapping(target = "name", source = "peName")
     @Mapping(target = "lastName", source = "peLastname")
-    @Mapping(target = "dob", source = "peDob")
+    @Mapping(target = "cip", source = "peCip")
+    @Mapping(target = "document", source = "peDocument")
+    @Mapping(target = "email", source = "peChasqui")
     PersonDto mapperToDto(EpPersonEntity source);
 
     List<PersonDto> mapperToList(List<EpPersonEntity> entities);

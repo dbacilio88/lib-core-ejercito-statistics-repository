@@ -163,7 +163,9 @@ public class PersonDomainService extends ReactorServiceBase implements IPersonDo
 
                 entityUpdate.setPeName(request.getName());
                 entityUpdate.setPeLastname(request.getLastName());
-                entityUpdate.setPeDob(request.getDob());
+                entityUpdate.setPeChasqui(request.getEmail());
+                entityUpdate.setPeDocument(request.getDocument());
+                entityUpdate.setPeCip(request.getCip());
 
                 final EpPersonEntity entityResult = this.personRepository.save(entityUpdate);
 
@@ -192,5 +194,20 @@ public class PersonDomainService extends ReactorServiceBase implements IPersonDo
         return Mono.just(persons)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+    @Override
+    public Mono<PersonDto> getByDocument(String document) {
+        if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidCode(document))) {
+            log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_DOCUMENT_INVALID_FORMAT_ERROR);
+            return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_DOCUMENT_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_DOCUMENT, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_DOCUMENT_INVALID_FORMAT_ERROR)));
+        }
+
+        final Optional<EpPersonEntity> findByDocumentPersonEntity = this.personRepository.findByDocument(document);
+
+        return getPersonDto(
+            findByDocumentPersonEntity,
+            MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_DOCUMENT_FORMAT_SUCCESS,
+            MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_DOCUMENT_NOT_EXIST_FORMAT_ERROR);
     }
 }

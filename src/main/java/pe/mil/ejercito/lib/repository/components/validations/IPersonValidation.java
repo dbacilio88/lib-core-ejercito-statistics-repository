@@ -55,7 +55,9 @@ public interface IPersonValidation extends Function<PersonDto, Mono<ProcessValid
         return Objects.isNull(valid.getId())
             || Objects.isNull(valid.getUuId())
             || Objects.isNull(valid.getLastName())
-            || Objects.isNull(valid.getDob())
+            || Objects.isNull(valid.getCip())
+            || Objects.isNull(valid.getDocument())
+            || Objects.isNull(valid.getEmail())
             || CommonRequestHelper.isInvalidId(valid.getId())
             || CommonRequestHelper.isInvalidUuId(valid.getUuId())
             || Objects.isNull(valid.getName());
