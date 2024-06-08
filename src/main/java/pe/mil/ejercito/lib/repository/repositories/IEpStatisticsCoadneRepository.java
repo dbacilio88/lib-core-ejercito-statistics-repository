@@ -30,20 +30,20 @@ import java.util.Optional;
 public interface IEpStatisticsCoadneRepository extends JpaRepository<EpStatisticsCoadneEntity, Long> {
 
     @Query(value = "SELECT ae FROM EpStatisticsCoadneEntity ae " +
-        "LEFT JOIN FETCH ae.stDocument " +
+        "LEFT JOIN FETCH ae.stcDocument " +
         "WHERE ae.uuId = :uuId")
     Optional<EpStatisticsCoadneEntity> findByUuId(@Param("uuId") String uuId);
 
     @Query(value = "SELECT ae FROM EpStatisticsCoadneEntity ae " +
-        "LEFT JOIN FETCH ae.stDocument " +
+        "LEFT JOIN FETCH ae.stcDocument " +
         "WHERE ae.id = :id")
     Optional<EpStatisticsCoadneEntity> findById(@Param("id") Long id);
 
     @Query(value = "SELECT ae FROM EpStatisticsCoadneEntity ae " +
-        "INNER JOIN FETCH ae.stDocument d " +
+        "INNER JOIN FETCH ae.stcDocument d " +
         "WHERE (:document is null or d.uuId = :document) ",
         countQuery = "SELECT COUNT(ae) FROM EpStatisticsCoadneEntity ae " +
-            "LEFT JOIN ae.stDocument d " +
+            "LEFT JOIN ae.stcDocument d " +
             "WHERE (:document is null or d.uuId = :unit) ")
     Page<EpStatisticsCoadneEntity> findAll(@Param("document") String document, Pageable pageable);
 }

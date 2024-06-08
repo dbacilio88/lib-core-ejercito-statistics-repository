@@ -33,6 +33,7 @@ public interface IEpUserRepository extends JpaRepository<EpUserEntity, Long> {
         "LEFT JOIN  FETCH u.usUserStatus " +
         "LEFT JOIN FETCH u.usPerson " +
         "LEFT JOIN FETCH u.usProfile " +
+        "LEFT JOIN FETCH u.usUnit " +
         "WHERE u.uuId = :uuId")
     Optional<EpUserEntity> findByUuId(@Param("uuId") String uuId);
 
@@ -40,6 +41,7 @@ public interface IEpUserRepository extends JpaRepository<EpUserEntity, Long> {
         "LEFT JOIN  FETCH u.usUserStatus " +
         "LEFT JOIN FETCH u.usPerson " +
         "LEFT JOIN FETCH u.usProfile " +
+        "LEFT JOIN FETCH u.usUnit " +
         "WHERE u.id = :id")
     Optional<EpUserEntity> findById(@Param("id") Long id);
 
@@ -47,6 +49,7 @@ public interface IEpUserRepository extends JpaRepository<EpUserEntity, Long> {
         "LEFT JOIN  FETCH u.usUserStatus " +
         "LEFT JOIN FETCH u.usPerson " +
         "LEFT JOIN FETCH u.usProfile " +
+        "LEFT JOIN FETCH u.usUnit " +
         "WHERE u.usUsername = :username")
     Optional<EpUserEntity> findByUsername(String username);
 
@@ -55,15 +58,19 @@ public interface IEpUserRepository extends JpaRepository<EpUserEntity, Long> {
         "INNER JOIN FETCH u.usUserStatus us " +
         "INNER JOIN FETCH u.usPerson p " +
         "INNER JOIN FETCH u.usProfile pr " +
+        "INNER JOIN FETCH u.usUnit un " +
         "WHERE (:status is null or us.usCode = :status) " +
         "AND (:profile is null or pr.uuId = :profile) " +
-        "AND (:person is null or p.uuId = :person) ",
+        "AND (:person is null or p.uuId = :person) " +
+        "AND (:unit is null or un.uuId = :unit) ",
         countQuery = "SELECT COUNT(u) FROM EpUserEntity u " +
             "LEFT JOIN u.usUserStatus us " +
             "LEFT JOIN u.usPerson p " +
             "LEFT JOIN u.usProfile pr " +
+            "LEFT JOIN u.usUnit un " +
             "WHERE (:status is null or us.usCode = :status) " +
             "AND (:profile is null or pr.uuId = :profile) " +
-            "AND (:person is null or p.uuId = :person) ")
-    Page<EpUserEntity> findAll(@Param("status") String status, @Param("profile") String profile, @Param("person") String personId, Pageable pageable);
+            "AND (:person is null or p.uuId = :person) " +
+            "AND (:unit is null or un.uuId = :unit) ")
+    Page<EpUserEntity> findAll(@Param("status") String status, @Param("profile") String profile, @Param("person") String personId, @Param("unit") String unit, Pageable pageable);
 }

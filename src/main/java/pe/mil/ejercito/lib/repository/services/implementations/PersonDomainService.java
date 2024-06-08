@@ -164,7 +164,7 @@ public class PersonDomainService extends ReactorServiceBase implements IPersonDo
                 entityUpdate.setPeName(request.getName());
                 entityUpdate.setPeLastname(request.getLastName());
                 entityUpdate.setPeChasqui(request.getEmail());
-                entityUpdate.setPeDocument(request.getDocument());
+                entityUpdate.setDocument(request.getDocument());
                 entityUpdate.setPeCip(request.getCip());
 
                 final EpPersonEntity entityResult = this.personRepository.save(entityUpdate);

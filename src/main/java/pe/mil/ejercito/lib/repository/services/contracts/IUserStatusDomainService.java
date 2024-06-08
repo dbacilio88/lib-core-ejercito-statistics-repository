@@ -23,6 +23,7 @@ public interface IUserStatusDomainService extends
     IGetAllDomainEntity<Mono<List<UserStatusDto>>>,
     IGetByIdDomainEntity<Mono<UserStatusDto>, Long>,
     IGetByUuIdDomainEntity<Mono<UserStatusDto>, String>,
+    IGetByCodeDomainEntity<Mono<UserStatusDto>, String>,
     ISaveDomainEntity<Mono<UserStatusDto>, UserStatusDto>,
     IUpdateDomainEntity<Mono<UserStatusDto>, UserStatusDto>,
     IDeleteDomainEntity<Mono<UserStatusDto>, String> {

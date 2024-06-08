@@ -30,20 +30,20 @@ import java.util.Optional;
 public interface IEpStatisticsDiplaneRepository extends JpaRepository<EpStatisticsDiplaneEntity, Long> {
 
     @Query(value = "SELECT ae FROM EpStatisticsDiplaneEntity ae " +
-        "LEFT JOIN FETCH ae.stDocument " +
+        "LEFT JOIN FETCH ae.stdDocument " +
         "WHERE ae.uuId = :uuId")
     Optional<EpStatisticsDiplaneEntity> findByUuId(@Param("uuId") String uuId);
 
     @Query(value = "SELECT ae FROM EpStatisticsDiplaneEntity ae " +
-        "LEFT JOIN FETCH ae.stDocument " +
+        "LEFT JOIN FETCH ae.stdDocument " +
         "WHERE ae.id = :id")
     Optional<EpStatisticsDiplaneEntity> findById(@Param("id") Long id);
 
     @Query(value = "SELECT ae FROM EpStatisticsDiplaneEntity ae " +
-        "INNER JOIN FETCH ae.stDocument d " +
+        "INNER JOIN FETCH ae.stdDocument d " +
         "WHERE (:document is null or d.uuId = :document) ",
         countQuery = "SELECT COUNT(ae) FROM EpStatisticsDiplaneEntity ae " +
-            "LEFT JOIN ae.stDocument d " +
+            "LEFT JOIN ae.stdDocument d " +
             "WHERE (:document is null or d.uuId = :unit) ")
     Page<EpStatisticsDiplaneEntity> findAll(@Param("document") String document, Pageable pageable);
 }

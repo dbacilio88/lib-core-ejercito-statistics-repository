@@ -30,20 +30,20 @@ import java.util.Optional;
 public interface IEpStatisticsAeRepository extends JpaRepository<EpStatisticsAeEntity, Long> {
 
     @Query(value = "SELECT ae FROM EpStatisticsAeEntity ae " +
-        "LEFT JOIN FETCH ae.stDocument " +
+        "LEFT JOIN FETCH ae.staDocument " +
         "WHERE ae.uuId = :uuId")
     Optional<EpStatisticsAeEntity> findByUuId(@Param("uuId") String uuId);
 
     @Query(value = "SELECT ae FROM EpStatisticsAeEntity ae " +
-        "LEFT JOIN FETCH ae.stDocument " +
+        "LEFT JOIN FETCH ae.staDocument " +
         "WHERE ae.id = :id")
     Optional<EpStatisticsAeEntity> findById(@Param("id") Long id);
 
     @Query(value = "SELECT ae FROM EpStatisticsAeEntity ae " +
-        "INNER JOIN FETCH ae.stDocument d " +
+        "INNER JOIN FETCH ae.staDocument d " +
         "WHERE (:document is null or d.uuId = :document) ",
         countQuery = "SELECT COUNT(ae) FROM EpStatisticsAeEntity ae " +
-            "LEFT JOIN ae.stDocument d " +
+            "LEFT JOIN ae.staDocument d " +
             "WHERE (:document is null or d.uuId = :unit) ")
     Page<EpStatisticsAeEntity> findAll(@Param("document") String document, Pageable pageable);
 }

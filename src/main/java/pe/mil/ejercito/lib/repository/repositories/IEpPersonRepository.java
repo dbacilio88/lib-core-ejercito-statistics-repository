@@ -27,6 +27,6 @@ public interface IEpPersonRepository extends JpaRepository<EpPersonEntity, Long>
 
     Optional<EpPersonEntity> findByUuId(String uuId);
 
-    @Query(name = "SELECT p FROM EpPersonEntity p WHERE p.peDocument = :document")
+    @Query(name = "SELECT p FROM EpPersonEntity p WHERE p.document = :document")
     Optional<EpPersonEntity> findByDocument(String document);
 }

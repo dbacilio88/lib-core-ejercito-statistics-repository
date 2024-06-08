@@ -9,14 +9,8 @@ import pe.mil.ejercito.lib.repository.components.helper.PageableHelper;
 import pe.mil.ejercito.lib.repository.components.mappers.IUserMapper;
 import pe.mil.ejercito.lib.repository.components.validations.IUserValidation;
 import pe.mil.ejercito.lib.repository.dtos.UserDto;
-import pe.mil.ejercito.lib.repository.repositories.IEpPersonRepository;
-import pe.mil.ejercito.lib.repository.repositories.IEpProfileRepository;
-import pe.mil.ejercito.lib.repository.repositories.IEpUserRepository;
-import pe.mil.ejercito.lib.repository.repositories.IEpUserStatusRepository;
-import pe.mil.ejercito.lib.repository.repositories.entities.EpPersonEntity;
-import pe.mil.ejercito.lib.repository.repositories.entities.EpProfileEntity;
-import pe.mil.ejercito.lib.repository.repositories.entities.EpUserEntity;
-import pe.mil.ejercito.lib.repository.repositories.entities.EpUserStatusEntity;
+import pe.mil.ejercito.lib.repository.repositories.*;
+import pe.mil.ejercito.lib.repository.repositories.entities.*;
 import pe.mil.ejercito.lib.repository.services.contracts.IUserDomainService;
 import pe.mil.ejercito.lib.utils.componets.enums.ProcessResult;
 import pe.mil.ejercito.lib.utils.componets.enums.ResponseEnum;
@@ -52,18 +46,21 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
 
     private final IEpPersonRepository personRepository;
     private final IEpUserStatusRepository userStatusRepository;
+    private final IEpUnitRepository unitRepository;
     private final IEpUserRepository userRepository;
     private final IEpProfileRepository profileRepository;
     private final IUserMapper userMapper;
 
     public UserDomainService(final IEpPersonRepository personRepository,
                              final IEpUserStatusRepository userStatusRepository,
+                             final IEpUnitRepository unitRepository,
                              final IEpUserRepository userRepository,
                              final IEpProfileRepository profileRepository,
                              final IUserMapper userMapper) {
         super("UserDomainService");
         this.personRepository = personRepository;
         this.userStatusRepository = userStatusRepository;
+        this.unitRepository = unitRepository;
         this.userRepository = userRepository;
         this.profileRepository = profileRepository;
         this.userMapper = userMapper;
@@ -168,6 +165,14 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
 
                 final EpUserEntity persistenceEntity = this.userMapper.mapperToEntity(request);
 
+
+                final Optional<EpUserEntity> searchUserEntity = this.userRepository.findByUsername(persistenceEntity.getUsUsername());
+
+                if (searchUserEntity.isPresent()) {
+                    log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_USERNAME_EXIST_FORMAT_ERROR);
+                    return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_USERNAME_EXIST_FORMAT_ERROR, ResponseEnum.REGISTERED_USER_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_USERNAME_EXIST_FORMAT_ERROR)));
+                }
+
                 final Optional<EpProfileEntity> profileEntity = this.profileRepository.findByUuId(request.getProfile());
 
                 if (profileEntity.isEmpty()) {
@@ -189,10 +194,18 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR)));
                 }
 
+                final Optional<EpUnitEntity> unitEntity = this.unitRepository.findByUuId(request.getUnit());
+
+                if (unitEntity.isEmpty()) {
+                    log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
+                    return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR)));
+                }
+
                 persistenceEntity.setUuId(UUID.randomUUID().toString());
                 persistenceEntity.setUsProfile(profileEntity.get());
                 persistenceEntity.setUsPerson(personEntity.get());
                 persistenceEntity.setUsUserStatus(userStatusEntity.get());
+                persistenceEntity.setUsUnit(unitEntity.get());
                 persistenceEntity.setUsCreateDate(Instant.now());
                 final EpUserEntity entityResult = this.userRepository.save(persistenceEntity);
                 return Mono.just(this.userMapper.mapperToDto(entityResult));
@@ -237,14 +250,24 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
 
+                final Optional<EpUnitEntity> unitEntity = this.unitRepository.findByUuId(request.getUnit());
+
+                if (unitEntity.isEmpty()) {
+                    log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
+                    return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
+                }
+
 
                 final EpUserEntity entityUpdate = updateByUuIdUserEntity.get();
+                entityUpdate.setUsUnit(unitEntity.get());
+                entityUpdate.setUsPerson(personEntity.get());
+                entityUpdate.setUsProfile(profileEntity.get());
+                entityUpdate.setUsUserStatus(userStatusEntity.get());
                 entityUpdate.setUsPassword(request.getPassword());
                 entityUpdate.setUsLap(request.getLdap());
+                entityUpdate.setUsEmail(request.getEmail());
+                entityUpdate.setUsPhone(request.getPhone());
                 entityUpdate.setUsCategory(request.getCategory());
-                entityUpdate.setUsUserStatus(userStatusEntity.get());
-                entityUpdate.setUsProfile(profileEntity.get());
-                entityUpdate.setUsPerson(personEntity.get());
                 entityUpdate.setUsUpdateDate(Instant.now());
 
                 final EpUserEntity entityResult = this.userRepository.save(entityUpdate);
@@ -252,6 +275,7 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
                 entityResult.setUsUserStatus(userStatusEntity.get());
                 entityResult.setUsProfile(profileEntity.get());
                 entityResult.setUsPerson(personEntity.get());
+                entityResult.setUsUnit(unitEntity.get());
 
                 return Mono.just(this.userMapper.mapperToDto(entityResult));
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
@@ -270,15 +294,13 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
     }
 
     @Override
-    public Mono<List<UserDto>> getAllEntities(String status, String profile, String person, String limit, String page, PageableDto pageable) {
+    public Mono<List<UserDto>> getAllEntities(String status, String profile, String person, String unit, String limit, String page, PageableDto pageable) {
         Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
-        Page<EpUserEntity> entityPage = this.userRepository.findAll(status, profile, person, paging);
+        Page<EpUserEntity> entityPage = this.userRepository.findAll(status, profile, person, unit, paging);
         List<UserDto> users = this.userMapper.mapperToList(entityPage.getContent());
         PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
         return Mono.just(users)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
-
-
 }

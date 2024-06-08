@@ -48,7 +48,7 @@ public class EpPersonEntity {
     private String peLastname;
 
     @Column(name = "PE_DOCUMENT", nullable = false, length = 8)
-    private String peDocument;
+    private String document;
 
     @Column(name = "PE_CIP", nullable = false, length = 9)
     private String peCip;

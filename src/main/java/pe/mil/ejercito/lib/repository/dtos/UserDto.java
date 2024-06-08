@@ -55,6 +55,12 @@ public class UserDto implements Serializable {
     @Uuid
     private String status;
 
+    @Size(max = 36, min = 36)
+    @NotNull
+    @NotBlank
+    @Uuid
+    private String unit;
+
     @Size(max = 50)
     @NotNull
     @NotBlank
@@ -71,6 +77,17 @@ public class UserDto implements Serializable {
     @NotNull
     @NotBlank
     private String category;
+
+    @Size(max = 9)
+    @NotNull
+    @NotBlank
+    private String phone;
+
+    @Size(max = 50)
+    @NotNull
+    @NotBlank
+    private String email;
+
 
     private Instant createDate;
     private Instant updateDate;

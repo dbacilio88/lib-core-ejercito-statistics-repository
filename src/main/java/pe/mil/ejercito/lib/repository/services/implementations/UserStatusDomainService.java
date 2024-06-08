@@ -74,6 +74,19 @@ public class UserStatusDomainService extends ReactorServiceBase implements IUser
     }
 
     @Override
+    public Mono<UserStatusDto> getByCodeEntity(String code) {
+        if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidCode(code))) {
+            log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_CODE_INVALID_FORMAT_ERROR);
+            return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_CODE_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_CODE, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_CODE_INVALID_FORMAT_ERROR)));
+        }
+        final Optional<EpUserStatusEntity> persistenceEntity = this.userStatusRepository.findByUsCode(code);
+        return getUserStatusDto(
+            persistenceEntity,
+            MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_CODE_FORMAT_SUCCESS,
+            MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_CODE_NOT_EXIST_FORMAT_ERROR);
+    }
+
+    @Override
     public Mono<UserStatusDto> getByUuIdEntity(String uuId) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
             log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR);
@@ -181,6 +194,8 @@ public class UserStatusDomainService extends ReactorServiceBase implements IUser
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_OR_UPDATE_VALIDATION_RESPONSE_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
+
+
 }
 
 

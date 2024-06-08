@@ -34,10 +34,13 @@ public interface IUserMapper {
     @Mapping(target = "usUpdateDate", source = "updateDate")
     @Mapping(target = "usProfile.uuId", source = "profile")
     @Mapping(target = "usPerson.uuId", source = "person")
+    @Mapping(target = "usUnit.uuId", source = "unit")
     @Mapping(target = "usUserStatus.uuId", source = "status")
     @Mapping(target = "usPassword", source = "password")
     @Mapping(target = "usLap", source = "ldap")
     @Mapping(target = "usCategory", source = "category")
+    @Mapping(target = "usPhone", source = "phone")
+    @Mapping(target = "usEmail", source = "email")
     @Mapping(target = "usCreateDate", source = "createDate")
     EpUserEntity mapperToEntity(UserDto source);
 
@@ -47,9 +50,12 @@ public interface IUserMapper {
     @Mapping(target = "updateDate", source = "usUpdateDate")
     @Mapping(target = "profile", source = "usProfile.uuId")
     @Mapping(target = "person", source = "usPerson.uuId")
+    @Mapping(target = "unit", source = "usUnit.uuId")
     @Mapping(target = "password", source = "usPassword")
     @Mapping(target = "ldap", source = "usLap")
     @Mapping(target = "category", source = "usCategory")
+    @Mapping(target = "email", source = "usEmail")
+    @Mapping(target = "phone", source = "usPhone")
     @Mapping(target = "createDate", source = "usCreateDate")
     UserDto mapperToDto(EpUserEntity source);
 

@@ -31,7 +31,7 @@ public interface IPersonMapper {
     @Mapping(target = "peName", source = "name")
     @Mapping(target = "peLastname", source = "lastName")
     @Mapping(target = "peChasqui", source = "email")
-    @Mapping(target = "peDocument", source = "document")
+    @Mapping(target = "document", source = "document")
     @Mapping(target = "peCip", source = "cip")
     @Mapping(target = "epUsers", ignore = true)
     EpPersonEntity mapperToEntity(PersonDto source);
@@ -40,7 +40,7 @@ public interface IPersonMapper {
     @Mapping(target = "name", source = "peName")
     @Mapping(target = "lastName", source = "peLastname")
     @Mapping(target = "cip", source = "peCip")
-    @Mapping(target = "document", source = "peDocument")
+    @Mapping(target = "document", source = "document")
     @Mapping(target = "email", source = "peChasqui")
     PersonDto mapperToDto(EpPersonEntity source);
 

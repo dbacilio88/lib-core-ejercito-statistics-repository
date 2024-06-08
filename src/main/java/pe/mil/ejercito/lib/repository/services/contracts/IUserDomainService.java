@@ -27,7 +27,7 @@ public interface IUserDomainService extends
         IUpdateDomainEntity<Mono<UserDto>, UserDto>,
         IDeleteDomainEntity<Mono<UserDto>, String> {
 
-    Mono<List<UserDto>> getAllEntities(String status, String profile, String person, String limit, String page, PageableDto pageable);
+    Mono<List<UserDto>> getAllEntities(String status, String profile, String person, String unit, String limit, String page, PageableDto pageable);
 
     Mono<UserDto> getByUsernameEntity(String username);
 }

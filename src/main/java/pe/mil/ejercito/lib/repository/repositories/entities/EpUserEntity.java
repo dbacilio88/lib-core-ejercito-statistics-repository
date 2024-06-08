@@ -26,7 +26,8 @@ import java.time.Instant;
 @NoArgsConstructor
 @Entity(name = "EpUserEntity")
 @Table(name = "EP_USER", indexes = {
-        @Index(name = "EP_USER_UN1", columnList = "US_UUID", unique = true)
+    @Index(name = "EP_USER_UN1", columnList = "US_UUID", unique = true),
+    @Index(name = "EP_USER_UN2", columnList = "US_USERNAME", unique = true)
 })
 public class EpUserEntity {
     @Id
@@ -53,6 +54,11 @@ public class EpUserEntity {
     @ToString.Exclude
     private EpUserStatusEntity usUserStatus;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "US_UNIT_ID", nullable = false)
+    @ToString.Exclude
+    private EpUnitEntity usUnit;
+
     @Column(name = "US_USERNAME", nullable = false, length = 50)
     private String usUsername;
 
@@ -64,6 +70,12 @@ public class EpUserEntity {
 
     @Column(name = "US_CATEGORY", nullable = false, length = 10)
     private String usCategory;
+
+    @Column(name = "US_PHONE", nullable = false, length = 9)
+    private String usPhone;
+
+    @Column(name = "US_EMAIL", nullable = false, length = 50)
+    private String usEmail;
 
     @Column(name = "US_CREATE_DATE", nullable = false)
     private Instant usCreateDate;
