@@ -267,6 +267,8 @@ public class UserDomainService extends ReactorServiceBase implements IUserDomain
                 entityUpdate.setUsLap(request.getLdap());
                 entityUpdate.setUsEmail(request.getEmail());
                 entityUpdate.setUsPhone(request.getPhone());
+                entityUpdate.setUsBrigade(request.getBrigade());
+                entityUpdate.setUsDivision(request.getDivision());
                 entityUpdate.setUsCategory(request.getCategory());
                 entityUpdate.setUsUpdateDate(Instant.now());
 

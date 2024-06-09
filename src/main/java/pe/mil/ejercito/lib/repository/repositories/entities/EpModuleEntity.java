@@ -31,8 +31,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity(name = "EpModuleEntity")
 @Table(name = "EP_MODULE", indexes = {
-        @Index(name = "EP_MODULE_UN1", columnList = "MO_UUID", unique = true),
-        @Index(name = "EP_MODULE_UN2", columnList = "MO_NAME", unique = true)
+    @Index(name = "EP_MODULE_UN1", columnList = "MO_UUID", unique = true)
 })
 public class EpModuleEntity {
     @Id
@@ -49,28 +48,27 @@ public class EpModuleEntity {
     @ToString.Exclude
     private EpModuleStatusEntity moModuleStatus;
 
-    @Column(name = "MO_NAME", nullable = false, length = 50)
-    private String moName;
+    @Column(name = "MO_TITLE", nullable = false, length = 50)
+    private String moTitle;
+
+    @Column(name = "MO_LEVEL", nullable = false, precision = 1)
+    private Integer moLevel;
 
     @Convert(converter = BooleanToNumericConverter.class)
-    @Column(name = "MO_IS_COMPONENT", nullable = false, precision = 1)
-    private Boolean moIsComponent;
-
-    @Convert(converter = BooleanToNumericConverter.class)
-    @Column(name = "MO_IS_MENU", nullable = false, precision = 1)
-    private Boolean moIsMenu;
+    @Column(name = "MO_CHILD", nullable = false, precision = 1)
+    private Boolean moIsChild;
 
     @Column(name = "MO_ICON", length = 50)
     private String moIcon;
 
+    @Column(name = "MO_TYPE", nullable = false, length = 5)
+    private String moType;
+
     @Column(name = "MO_PATH", length = 50)
     private String moPath;
 
-    @Column(name = "MO_ORDER", nullable = false, precision = 1)
-    private Integer moOrder;
-
-    @Column(name = "MO_GROUP", nullable = false, precision = 1)
-    private Integer moGroup;
+    @Column(name = "MO_FATHER", nullable = false)
+    private Long moFather;
 
     @Column(name = "MO_CREATE_DATE", nullable = false)
     private Instant moCreateDate;

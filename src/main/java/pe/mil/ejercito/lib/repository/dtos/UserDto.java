@@ -88,6 +88,18 @@ public class UserDto implements Serializable {
     @NotBlank
     private String email;
 
+    @Size(max = 36)
+    @NotNull
+    @NotBlank
+    @Uuid
+    private String brigade;
+
+    @Size(max = 36)
+    @NotNull
+    @NotBlank
+    @Uuid
+    private String division;
+
 
     private Instant createDate;
     private Instant updateDate;

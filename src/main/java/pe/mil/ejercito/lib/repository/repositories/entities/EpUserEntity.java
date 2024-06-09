@@ -77,6 +77,12 @@ public class EpUserEntity {
     @Column(name = "US_EMAIL", nullable = false, length = 50)
     private String usEmail;
 
+    @Column(name = "US_BRIGADE", nullable = false, length = 36)
+    private String usBrigade;
+
+    @Column(name = "US_DIVISION", nullable = false, length = 36)
+    private String usDivision;
+
     @Column(name = "US_CREATE_DATE", nullable = false)
     private Instant usCreateDate;
 

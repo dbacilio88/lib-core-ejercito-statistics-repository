@@ -23,21 +23,21 @@ import java.util.List;
  * @since 19/05/2024
  */
 @Mapper(
-        componentModel = MappingConstants.ComponentModel.SPRING,
-        nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
+    componentModel = MappingConstants.ComponentModel.SPRING,
+    nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )
 public interface IModuleMapper {
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "uuId", source = "uuId")
     @Mapping(target = "moModuleStatus.uuId", source = "status")
-    @Mapping(target = "moName", source = "name")
-    @Mapping(target = "moIsMenu", source = "isMenu")
-    @Mapping(target = "moIsComponent", source = "component")
+    @Mapping(target = "moTitle", source = "title")
+    @Mapping(target = "moLevel", source = "level")
+    @Mapping(target = "moIsChild", source = "child")
     @Mapping(target = "moIcon", source = "icon")
+    @Mapping(target = "moType", source = "type")
     @Mapping(target = "moPath", source = "path")
-    @Mapping(target = "moOrder", source = "order")
-    @Mapping(target = "moGroup", source = "group")
+    @Mapping(target = "moFather", source = "father")
     @Mapping(target = "moCreateDate", source = "createDate")
     @Mapping(target = "moUpdateDate", source = "updateDate")
     @Mapping(target = "epProfileOptionModules", ignore = true)
@@ -46,13 +46,13 @@ public interface IModuleMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "uuId", source = "uuId")
     @Mapping(target = "status", source = "moModuleStatus.uuId")
-    @Mapping(target = "name", source = "moName")
-    @Mapping(target = "isMenu", source = "moIsMenu")
-    @Mapping(target = "component", source = "moIsComponent")
+    @Mapping(target = "title", source = "moTitle")
+    @Mapping(target = "level", source = "moLevel")
+    @Mapping(target = "child", source = "moIsChild")
     @Mapping(target = "icon", source = "moIcon")
+    @Mapping(target = "type", source = "moType")
     @Mapping(target = "path", source = "moPath")
-    @Mapping(target = "order", source = "moOrder")
-    @Mapping(target = "group", source = "moGroup")
+    @Mapping(target = "father", source = "moFather")
     @Mapping(target = "createDate", source = "moCreateDate")
     @Mapping(target = "updateDate", source = "moUpdateDate")
     @Mapping(target = "children", ignore = true)

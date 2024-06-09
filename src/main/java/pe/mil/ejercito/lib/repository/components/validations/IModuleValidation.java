@@ -58,11 +58,11 @@ public interface IModuleValidation extends Function<ModuleDto, Mono<ProcessValid
             || CommonRequestHelper.isInvalidId(valid.getId())
             || CommonRequestHelper.isInvalidUuId(valid.getUuId())
             || CommonRequestHelper.isInvalidUuId(valid.getStatus())
-            || Objects.isNull(valid.getName())
-            || Objects.isNull(valid.getComponent())
-            || Objects.isNull(valid.getIsMenu())
-            || Objects.isNull(valid.getOrder())
-            || Objects.isNull(valid.getGroup())
+            || Objects.isNull(valid.getTitle())
+            || Objects.isNull(valid.getLevel())
+            || Objects.isNull(valid.getChild())
+            || Objects.isNull(valid.getType())
+            || Objects.isNull(valid.getFather())
             || Objects.isNull(valid.getCreateDate());
     }
 }

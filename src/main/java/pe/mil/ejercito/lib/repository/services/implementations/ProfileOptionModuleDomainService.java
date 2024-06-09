@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import pe.mil.ejercito.lib.repository.components.helper.PageableHelper;
 import pe.mil.ejercito.lib.repository.components.mappers.IProfileOptionModuleMapper;
 import pe.mil.ejercito.lib.repository.components.validations.IProfileOptionModuleValidation;
+import pe.mil.ejercito.lib.repository.dtos.ModuleDto;
 import pe.mil.ejercito.lib.repository.dtos.ProfileOptionModuleDto;
 import pe.mil.ejercito.lib.repository.repositories.IEpModuleRepository;
 import pe.mil.ejercito.lib.repository.repositories.IEpProfileOptionModuleRepository;
@@ -55,7 +55,8 @@ public class ProfileOptionModuleDomainService extends ReactorServiceBase impleme
 
     protected ProfileOptionModuleDomainService(final IEpModuleRepository moduleRepository,
                                                final IEpProfileOptionModuleRepository profileOptionModuleRepository,
-                                               final IEpProfileRepository profileRepository, IProfileOptionModuleMapper profileOptionModuleMapper) {
+                                               final IEpProfileRepository profileRepository,
+                                               final IProfileOptionModuleMapper profileOptionModuleMapper) {
         super("ProfileOptionModuleDomainService");
         this.moduleRepository = moduleRepository;
         this.profileOptionModuleRepository = profileOptionModuleRepository;
@@ -227,10 +228,10 @@ public class ProfileOptionModuleDomainService extends ReactorServiceBase impleme
 
     @Override
     public Mono<List<ProfileOptionModuleDto>> getAllEntities(String module, String profile, String limit, String page, PageableDto pageable) {
+
         Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
         Page<EpProfileOptionModuleEntity> entityPage = this.profileOptionModuleRepository.findAll(module, profile, paging);
         List<ProfileOptionModuleDto> profileOptionModules = this.profileOptionModuleMapper.mapperToList(entityPage.getContent());
-        PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
         return Mono.just(profileOptionModules)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));

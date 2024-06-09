@@ -23,9 +23,8 @@ import pe.mil.ejercito.lib.utils.services.base.ReactorServiceBase;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static pe.mil.ejercito.lib.utils.constants.BaseLoggerServicesConstant.*;
 
@@ -183,13 +182,13 @@ public class ModuleDomainService extends ReactorServiceBase implements IModuleDo
 
                 final EpModuleEntity entityUpdate = updateModuleEntity.get();
                 entityUpdate.setMoModuleStatus(moduleStatusEntity.get());
-                entityUpdate.setMoName(request.getName());
-                entityUpdate.setMoIsMenu(request.getIsMenu());
-                entityUpdate.setMoIsComponent(request.getComponent());
+                entityUpdate.setMoTitle(request.getTitle());
+                entityUpdate.setMoLevel(request.getLevel());
+                entityUpdate.setMoIsChild(request.getChild());
                 entityUpdate.setMoIcon(request.getIcon());
+                entityUpdate.setMoType(request.getType());
                 entityUpdate.setMoPath(request.getPath());
-                entityUpdate.setMoOrder(request.getOrder());
-                entityUpdate.setMoGroup(request.getGroup());
+                entityUpdate.setMoFather(request.getFather());
                 entityUpdate.setMoUpdateDate(Instant.now());
                 final EpModuleEntity entityResult = this.moduleRepository.save(entityUpdate);
                 entityResult.setMoModuleStatus(moduleStatusEntity.get());
@@ -213,12 +212,74 @@ public class ModuleDomainService extends ReactorServiceBase implements IModuleDo
     public Mono<List<ModuleDto>> getAllEntities(String status, String limit, String page, PageableDto pageable) {
         Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
         Page<EpModuleEntity> entityPage = this.moduleRepository.findAll(status, paging);
-        List<ModuleDto> modules = this.moduleMapper.mapperToList(entityPage.getContent());
+        List<ModuleDto> result = this.moduleMapper.mapperToList(entityPage.getContent());
+        List<ModuleDto> modules = result.stream().filter(m -> m.getFather() == 0)
+            .map(m -> ModuleDto.builder()
+                .id(m.getId())
+                .uuId(m.getUuId())
+                .status(m.getStatus())
+                .title(m.getTitle())
+                .level(m.getLevel())
+                .child(m.getChild())
+                .icon(m.getIcon())
+                .type(m.getType())
+                .father(m.getFather())
+                .path(m.getPath())
+                .createDate(m.getCreateDate())
+                .updateDate(m.getUpdateDate())
+                .children(result.stream().filter(c -> c.getFather().equals(m.getId()))
+                    .collect(Collectors.toList()))
+                .build())
+            .collect(Collectors.toList());
         PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
         return Mono.just(modules)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
+
+    @Override
+    public Mono<List<ModuleDto>> getAllEntities(String status, String profile) {
+
+        List<EpModuleEntity> fatherList = this.moduleRepository.findAll();
+
+        Set<Long> longs = new HashSet<>();
+
+        if (!fatherList.isEmpty()) {
+            longs = fatherList.stream()
+                .filter(father -> !father.getMoIsChild())
+                .map(EpModuleEntity::getId)
+                .collect(Collectors.toSet());
+        }
+        List<EpModuleEntity> childList = this.moduleRepository.findAll(longs, profile);
+        List<ModuleDto> fatherMapper = this.moduleMapper.mapperToList(fatherList);
+        List<ModuleDto> childMapper = this.moduleMapper.mapperToList(childList);
+
+        List<ModuleDto> modules = fatherMapper.stream()
+            .filter(ff -> ff.getFather() == 0)
+            .map(m -> ModuleDto.builder()
+                .id(m.getId())
+                .uuId(m.getUuId())
+                .status(m.getStatus())
+                .title(m.getTitle())
+                .level(m.getLevel())
+                .child(m.getChild())
+                .icon(m.getIcon())
+                .type(m.getType())
+                .path(m.getPath())
+                .father(m.getFather())
+
+                .children(childMapper.stream().filter(fc -> fc.getFather().equals(m.getId())).collect(Collectors.toList()))
+                .build()
+            )
+            .filter(fr -> !fr.getChildren().isEmpty())
+            .collect(Collectors.toList());
+
+        return Mono.just(modules)
+            .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
+            .doOnError(throwable -> log.error(throwable.getMessage()));
+    }
+
+
 }
 
 

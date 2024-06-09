@@ -64,10 +64,6 @@ public class EpStatisticsDiplaneEntity extends EpStatisticsBaseEntity {
     @Column(name = "STD_TASK", length = 1000)
     private String stdTask;
 
-    @Size(max = 10)
-    @Column(name = "STD_PROCESS_NRO", length = 10)
-    private String stdProcessNro;
-
     @Size(max = 1000)
     @Column(name = "STD_PROCESS_NAME", length = 1000)
     private String stdProcessName;

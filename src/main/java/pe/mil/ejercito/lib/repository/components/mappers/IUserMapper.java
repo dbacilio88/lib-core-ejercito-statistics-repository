@@ -41,6 +41,8 @@ public interface IUserMapper {
     @Mapping(target = "usCategory", source = "category")
     @Mapping(target = "usPhone", source = "phone")
     @Mapping(target = "usEmail", source = "email")
+    @Mapping(target = "usBrigade", source = "brigade")
+    @Mapping(target = "usDivision", source = "division")
     @Mapping(target = "usCreateDate", source = "createDate")
     EpUserEntity mapperToEntity(UserDto source);
 
@@ -56,6 +58,8 @@ public interface IUserMapper {
     @Mapping(target = "category", source = "usCategory")
     @Mapping(target = "email", source = "usEmail")
     @Mapping(target = "phone", source = "usPhone")
+    @Mapping(target = "brigade", source = "usBrigade")
+    @Mapping(target = "division", source = "usDivision")
     @Mapping(target = "createDate", source = "usCreateDate")
     UserDto mapperToDto(EpUserEntity source);
 

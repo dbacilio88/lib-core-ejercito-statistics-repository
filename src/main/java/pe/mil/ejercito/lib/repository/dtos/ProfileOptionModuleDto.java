@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * ProfileOptionModuleDto
@@ -53,4 +54,6 @@ public class ProfileOptionModuleDto implements Serializable {
     private String privileges;
     private Instant createDate;
     private Instant updateDate;
+
+    private List<ModuleDto> modules;
 }

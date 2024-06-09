@@ -1,6 +1,7 @@
 package pe.mil.ejercito.lib.repository.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 import pe.mil.ejercito.lib.utils.componets.annotations.Uuid;
 
@@ -31,8 +32,24 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "id",
+    "uuId",
+    "status",
+    "title",
+    "level",
+    "child",
+    "icon",
+    "type",
+    "path",
+    "father",
+    "createDate",
+    "updateDate",
+    "children",
+})
 public class ModuleDto implements Serializable {
     private static final long serialVersionUID = -477612838432715446L;
+
     private Long id;
 
     private String uuId;
@@ -46,25 +63,27 @@ public class ModuleDto implements Serializable {
     @Size(max = 50)
     @NotNull
     @NotBlank
-    private String name;
+    private String title;
 
     @NotNull
-    private Boolean isMenu;
+    private Integer level;
 
     @NotNull
-    private Boolean component;
+    private Boolean child;
 
     @Size(max = 50)
     private String icon;
+
+    @NotNull
+    @NotBlank
+    @Size(max = 5)
+    private String type;
 
     @Size(max = 50)
     private String path;
 
     @NotNull
-    private Integer order;
-
-    @NotNull
-    private Integer group;
+    private Long father;
 
     private List<ModuleDto> children;
 

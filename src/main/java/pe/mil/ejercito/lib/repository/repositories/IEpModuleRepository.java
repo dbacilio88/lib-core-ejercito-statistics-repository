@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pe.mil.ejercito.lib.repository.repositories.entities.EpModuleEntity;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * IEpModuleRepository
@@ -38,6 +40,7 @@ public interface IEpModuleRepository extends JpaRepository<EpModuleEntity, Long>
         "WHERE m.id = :id")
     Optional<EpModuleEntity> findEntityById(Long id);
 
+
     @Query(value = "SELECT m FROM EpModuleEntity m " +
         "INNER JOIN FETCH m.moModuleStatus s " +
         "WHERE (:status is null or s.msCode = :status) ",
@@ -45,4 +48,12 @@ public interface IEpModuleRepository extends JpaRepository<EpModuleEntity, Long>
             "LEFT JOIN m.moModuleStatus s " +
             "WHERE (:status is null or s.msCode = :status) ")
     Page<EpModuleEntity> findAll(final @Param("status") String status, Pageable pageable);
+
+
+    @Query(value = "SELECT m FROM EpModuleEntity m LEFT JOIN FETCH m.moModuleStatus")
+    List<EpModuleEntity> findAll();
+
+    @Query(value = "SELECT m FROM EpModuleEntity m LEFT JOIN FETCH m.moModuleStatus lef LEFT JOIN FETCH m.epProfileOptionModules pom WHERE m.moFather in (:ids) AND pom.posProfile.uuId = :profile")
+    List<EpModuleEntity> findAll(final @Param("ids") Set<Long> ids, final @Param("profile") String profile);
+
 }

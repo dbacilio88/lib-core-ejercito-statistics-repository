@@ -28,4 +28,6 @@ public interface IModuleDomainService extends
     IDeleteDomainEntity<Mono<ModuleDto>, String> {
 
     Mono<List<ModuleDto>> getAllEntities(String status, String limit, String page, PageableDto pageable);
+
+    Mono<List<ModuleDto>> getAllEntities(String status, String profile);
 }

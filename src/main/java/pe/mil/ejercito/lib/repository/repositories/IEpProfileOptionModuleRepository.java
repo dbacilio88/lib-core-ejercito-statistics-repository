@@ -53,4 +53,6 @@ public interface IEpProfileOptionModuleRepository extends JpaRepository<EpProfil
             "WHERE (:module is null or m.uuId = :module) " +
             "AND (:profile is null or pr.uuId = :profile)")
     Page<EpProfileOptionModuleEntity> findAll(@Param("module") String module, @Param("profile") String profile, Pageable pageable);
+
+
 }
