@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pe.mil.ejercito.lib.repository.components.mappers.IProfileOptionModuleMapper;
 import pe.mil.ejercito.lib.repository.components.validations.IProfileOptionModuleValidation;
-import pe.mil.ejercito.lib.repository.dtos.ModuleDto;
 import pe.mil.ejercito.lib.repository.dtos.ProfileOptionModuleDto;
 import pe.mil.ejercito.lib.repository.repositories.IEpModuleRepository;
 import pe.mil.ejercito.lib.repository.repositories.IEpProfileOptionModuleRepository;
