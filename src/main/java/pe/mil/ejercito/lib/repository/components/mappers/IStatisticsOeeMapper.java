@@ -10,9 +10,9 @@ import pe.mil.ejercito.lib.repository.repositories.entities.EpStatisticsOeeEntit
 import java.util.List;
 
 /**
- * IStatisticsDeMapper
+ * IStatisticsOeeMapper
  * <p>
- * IStatisticsDeMapper interface.
+ * IStatisticsOeeMapper interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED

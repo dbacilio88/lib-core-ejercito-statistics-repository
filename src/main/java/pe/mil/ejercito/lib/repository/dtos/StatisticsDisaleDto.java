@@ -7,9 +7,9 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * StatisticsDinveDto
+ * StatisticsDisaleDto
  * <p>
- * StatisticsDinveDto class.
+ * StatisticsDisaleDto class.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED

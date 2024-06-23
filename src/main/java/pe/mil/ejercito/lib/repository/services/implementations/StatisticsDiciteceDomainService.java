@@ -148,8 +148,8 @@ public class StatisticsDiciteceDomainService extends ReactorServiceBase implemen
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_UUID, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
 
-                final Optional<EpStatisticsDiciteceEntity> statisticsAeEntity = this.repository.findByUuId(request.getUuId());
-                if (statisticsAeEntity.isEmpty()) {
+                final Optional<EpStatisticsDiciteceEntity> statisticsDiciteceEntity = this.repository.findByUuId(request.getUuId());
+                if (statisticsDiciteceEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
@@ -162,7 +162,7 @@ public class StatisticsDiciteceDomainService extends ReactorServiceBase implemen
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
 
-                final EpStatisticsDiciteceEntity entityUpdate = statisticsAeEntity.get();
+                final EpStatisticsDiciteceEntity entityUpdate = statisticsDiciteceEntity.get();
                 entityUpdate.setStdDocument(documentRegisterEntity.get());
                 entityUpdate.setStUpdatedDate(Instant.now());
                 final EpStatisticsDiciteceEntity entityResult = this.repository.save(entityUpdate);

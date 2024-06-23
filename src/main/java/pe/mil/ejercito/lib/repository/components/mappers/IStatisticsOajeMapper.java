@@ -10,9 +10,9 @@ import pe.mil.ejercito.lib.repository.repositories.entities.EpStatisticsOajeEnti
 import java.util.List;
 
 /**
- * IStatisticsDisaleMapper
+ * IStatisticsOajeMapper
  * <p>
- * IStatisticsDisaleMapper interface.
+ * IStatisticsOajeMapper interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED

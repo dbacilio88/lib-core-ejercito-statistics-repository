@@ -19,7 +19,4 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RepositoryConstant {
     public static final String MICROSERVICE_PROCESS_VALIDATION_PARAMETER_REQUIRED = "error the fields is required";
-
 }
-
-

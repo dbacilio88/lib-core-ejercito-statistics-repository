@@ -6,14 +6,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pe.mil.ejercito.lib.repository.components.helper.PageableHelper;
-import pe.mil.ejercito.lib.repository.components.mappers.IStatisticsDiplaneMapper;
-import pe.mil.ejercito.lib.repository.components.validations.IStatisticsDiplaneValidation;
-import pe.mil.ejercito.lib.repository.dtos.StatisticsDiplaneDto;
+import pe.mil.ejercito.lib.repository.components.mappers.IStatisticsDinveMapper;
+import pe.mil.ejercito.lib.repository.components.validations.IStatisticsDinveValidation;
+import pe.mil.ejercito.lib.repository.dtos.StatisticsDinveDto;
 import pe.mil.ejercito.lib.repository.repositories.IEpDocumentRegisterRepository;
-import pe.mil.ejercito.lib.repository.repositories.IEpStatisticsDiplaneRepository;
+import pe.mil.ejercito.lib.repository.repositories.IEpStatisticsDinveRepository;
 import pe.mil.ejercito.lib.repository.repositories.entities.EpDocumentRegisterEntity;
-import pe.mil.ejercito.lib.repository.repositories.entities.EpStatisticsDiplaneEntity;
-import pe.mil.ejercito.lib.repository.services.contracts.IStatisticsDiplaneDomainService;
+import pe.mil.ejercito.lib.repository.repositories.entities.EpStatisticsDinveEntity;
+import pe.mil.ejercito.lib.repository.services.contracts.IStatisticsDinveDomainService;
 import pe.mil.ejercito.lib.utils.componets.enums.ProcessResult;
 import pe.mil.ejercito.lib.utils.componets.enums.ResponseEnum;
 import pe.mil.ejercito.lib.utils.componets.exceptions.CommonException;
@@ -30,9 +30,9 @@ import java.util.UUID;
 import static pe.mil.ejercito.lib.utils.constants.BaseLoggerServicesConstant.*;
 
 /**
- * StatisticsDiplaneDomainService
+ * StatisticsDinveDomainService
  * <p>
- * StatisticsDiplaneDomainService class.
+ * StatisticsDinveDomainService class.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -44,46 +44,46 @@ import static pe.mil.ejercito.lib.utils.constants.BaseLoggerServicesConstant.*;
  */
 @Log4j2
 @Service
-public class StatisticsDiplaneDomainService extends ReactorServiceBase implements IStatisticsDiplaneDomainService {
+public class StatisticsDinveDomainService extends ReactorServiceBase implements IStatisticsDinveDomainService {
 
-    private final IEpStatisticsDiplaneRepository repository;
+    private final IEpStatisticsDinveRepository repository;
     private final IEpDocumentRegisterRepository documentRegisterRepository;
-    private final IStatisticsDiplaneMapper mapper;
+    private final IStatisticsDinveMapper mapper;
 
-    public StatisticsDiplaneDomainService(final IEpStatisticsDiplaneRepository repository,
-                                          final IEpDocumentRegisterRepository documentRegisterRepository,
-                                          final IStatisticsDiplaneMapper mapper) {
-        super("StatisticAeDomainService");
+    public StatisticsDinveDomainService(final IEpStatisticsDinveRepository repository,
+                                        final IEpDocumentRegisterRepository documentRegisterRepository,
+                                        final IStatisticsDinveMapper mapper) {
+        super("StatisticsDinveDomainService");
         this.repository = repository;
         this.documentRegisterRepository = documentRegisterRepository;
         this.mapper = mapper;
     }
 
     @Override
-    public Mono<StatisticsDiplaneDto> getByIdEntity(Long id) {
+    public Mono<StatisticsDinveDto> getByIdEntity(Long id) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidId(id))) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_ID, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
         }
 
-        final Optional<EpStatisticsDiplaneEntity> persistenceEntity = this.repository.findById(id);
+        final Optional<EpStatisticsDinveEntity> persistenceEntity = this.repository.findById(id);
 
-        return getStatisticsDiplaneDto(
+        return getStatisticsDiradneDto(
             persistenceEntity,
             MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_FORMAT_SUCCESS,
             MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_ID_NOT_EXIST_FORMAT_ERROR);
     }
 
     @Override
-    public Mono<StatisticsDiplaneDto> getByUuIdEntity(String uuId) {
+    public Mono<StatisticsDinveDto> getByUuIdEntity(String uuId) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
             log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_UUID, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
         }
 
-        final Optional<EpStatisticsDiplaneEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpStatisticsDinveEntity> persistenceEntity = this.repository.findByUuId(uuId);
 
-        return getStatisticsDiplaneDto(
+        return getStatisticsDiradneDto(
             persistenceEntity,
             MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_FORMAT_SUCCESS,
             MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -91,7 +91,7 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
 
 
     @Override
-    public Mono<StatisticsDiplaneDto> saveEntity(StatisticsDiplaneDto dto) {
+    public Mono<StatisticsDinveDto> saveEntity(StatisticsDinveDto dto) {
         return doOnSave(dto)
             .flatMap(this::doOnValidateResponse)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FORMAT_SUCCESS))
@@ -99,7 +99,7 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
     }
 
     @Override
-    public Mono<StatisticsDiplaneDto> updateEntity(StatisticsDiplaneDto dto) {
+    public Mono<StatisticsDinveDto> updateEntity(StatisticsDinveDto dto) {
         return doOnUpdate(dto)
             .flatMap(this::doOnValidateResponse)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FORMAT_SUCCESS))
@@ -107,8 +107,8 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
     }
 
 
-    private Mono<StatisticsDiplaneDto> doOnValidateResponse(StatisticsDiplaneDto dto) {
-        return IStatisticsDiplaneValidation.doOnValidationResponse().apply(dto)
+    private Mono<StatisticsDinveDto> doOnValidateResponse(StatisticsDinveDto dto) {
+        return IStatisticsDinveValidation.doOnValidationResponse().apply(dto)
             .flatMap(validation -> {
                 if (ProcessResult.PROCESS_FAILED.equals(validation.getProcessResult())) {
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_OR_UPDATE_VALIDATION_RESPONSE_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_RESPONSE_DATA, validation.getErrors()));
@@ -118,10 +118,10 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-    private Mono<StatisticsDiplaneDto> doOnSave(StatisticsDiplaneDto dto) {
+    private Mono<StatisticsDinveDto> doOnSave(StatisticsDinveDto dto) {
         return Mono.just(dto)
             .flatMap(request -> {
-                final EpStatisticsDiplaneEntity persistenceEntity = this.mapper.mapperToEntity(request);
+                final EpStatisticsDinveEntity persistenceEntity = this.mapper.mapperToEntity(request);
 
                 final Optional<EpDocumentRegisterEntity> documentRegisterEntity = this.documentRegisterRepository.findByUuId(request.getDocument());
                 if (documentRegisterEntity.isEmpty()) {
@@ -133,13 +133,13 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
                 persistenceEntity.setStdDocument(documentRegisterEntity.get());
                 persistenceEntity.setStCreatedDate(Instant.now());
 
-                final EpStatisticsDiplaneEntity entityResult = this.repository.save(persistenceEntity);
+                final EpStatisticsDinveEntity entityResult = this.repository.save(persistenceEntity);
                 return Mono.just(this.mapper.mapperToDto(entityResult));
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_SAVE_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-    private Mono<StatisticsDiplaneDto> doOnUpdate(StatisticsDiplaneDto dto) {
+    private Mono<StatisticsDinveDto> doOnUpdate(StatisticsDinveDto dto) {
         return Mono.just(dto)
             .flatMap(request -> {
 
@@ -148,8 +148,8 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_UUID, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
 
-                final Optional<EpStatisticsDiplaneEntity> statisticsDiplaneEntity = this.repository.findByUuId(request.getUuId());
-                if (statisticsDiplaneEntity.isEmpty()) {
+                final Optional<EpStatisticsDinveEntity> statisticsDinveEntity = this.repository.findByUuId(request.getUuId());
+                if (statisticsDinveEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
@@ -162,10 +162,10 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
 
-                final EpStatisticsDiplaneEntity entityUpdate = statisticsDiplaneEntity.get();
+                final EpStatisticsDinveEntity entityUpdate = statisticsDinveEntity.get();
                 entityUpdate.setStdDocument(documentRegisterEntity.get());
                 entityUpdate.setStUpdatedDate(Instant.now());
-                final EpStatisticsDiplaneEntity entityResult = this.repository.save(entityUpdate);
+                final EpStatisticsDinveEntity entityResult = this.repository.save(entityUpdate);
                 entityUpdate.setStdDocument(documentRegisterEntity.get());
                 return Mono.just(this.mapper.mapperToDto(entityResult));
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
@@ -174,13 +174,13 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
 
 
     @Override
-    public Mono<StatisticsDiplaneDto> deleteByUuIdEntity(String uuId) {
+    public Mono<StatisticsDinveDto> deleteByUuIdEntity(String uuId) {
         if (Boolean.TRUE.equals(CommonRequestHelper.isInvalidUuId(uuId))) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR);
             return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_INVALID_FORMAT_ERROR, ResponseEnum.ERROR_INVALID_DATA_ENTITY_ID, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
         }
 
-        final Optional<EpStatisticsDiplaneEntity> persistenceEntity = this.repository.findByUuId(uuId);
+        final Optional<EpStatisticsDinveEntity> persistenceEntity = this.repository.findByUuId(uuId);
 
         if (persistenceEntity.isEmpty()) {
             log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_DELETE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
@@ -193,7 +193,7 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
-    private Mono<StatisticsDiplaneDto> getStatisticsDiplaneDto(Optional<EpStatisticsDiplaneEntity> brEntity, String successMessage, String messageExist) {
+    private Mono<StatisticsDinveDto> getStatisticsDiradneDto(Optional<EpStatisticsDinveEntity> brEntity, String successMessage, String messageExist) {
         return brEntity.map(brigade -> Mono.just(this.mapper.mapperToDto(brigade))
                 .doOnSuccess(success -> log.debug(successMessage))
                 .doOnError(throwable -> log.error(throwable.getMessage())))
@@ -204,10 +204,10 @@ public class StatisticsDiplaneDomainService extends ReactorServiceBase implement
     }
 
     @Override
-    public Mono<List<StatisticsDiplaneDto>> getAllEntities(String document, String limit, String page, PageableDto pageable) {
+    public Mono<List<StatisticsDinveDto>> getAllEntities(String document, String limit, String page, PageableDto pageable) {
         Pageable paging = PageRequest.of(Integer.parseInt(page) - 1, Integer.parseInt(limit));
-        Page<EpStatisticsDiplaneEntity> entityPage = this.repository.findAll(document, paging);
-        List<StatisticsDiplaneDto> brigades = this.mapper.mapperToList(entityPage.getContent());
+        Page<EpStatisticsDinveEntity> entityPage = this.repository.findAll(document, paging);
+        List<StatisticsDinveDto> brigades = this.mapper.mapperToList(entityPage.getContent());
         PageableHelper.generatePaginationDetails(entityPage, page, limit, pageable);
         return Mono.just(brigades)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
