@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * EpStatisticsDisaleEntity
+ * EpStatisticsOajeEntity
  * <p>
- * EpStatisticsDisaleEntity class.
+ * EpStatisticsOajeEntity class.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -116,6 +116,17 @@ public class EpStatisticsOajeEntity extends EpStatisticsBaseEntity {
     private Double stoJunD;
     @Column(name = "STO_JUN_E")
     private Double stoJunE;
+
+    @Column(name = "STO_JUL_A")
+    private Double stoJulA;
+    @Column(name = "STO_JUL_B")
+    private Double stoJulB;
+    @Column(name = "STO_JUL_C")
+    private Double stoJulC;
+    @Column(name = "STO_JUL_D")
+    private Double stoJulD;
+    @Column(name = "STO_JUL_E")
+    private Double stoJulE;
 
     @Column(name = "STO_AGO_A")
     private Double stoAgoA;

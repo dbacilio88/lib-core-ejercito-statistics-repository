@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * EpStatisticsDilogeEntity
+ * EpStatisticsOeeEntity
  * <p>
- * EpStatisticsDilogeEntity class.
+ * EpStatisticsOeeEntity class.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED

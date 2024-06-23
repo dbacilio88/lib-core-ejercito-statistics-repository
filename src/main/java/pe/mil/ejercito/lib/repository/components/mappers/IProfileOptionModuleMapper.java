@@ -23,8 +23,8 @@ import java.util.List;
  * @since 19/05/2024
  */
 @Mapper(
-        componentModel = MappingConstants.ComponentModel.SPRING,
-        nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
+    componentModel = MappingConstants.ComponentModel.SPRING,
+    nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )
 public interface IProfileOptionModuleMapper {
     @Mapping(target = "id", source = "id")
@@ -43,6 +43,7 @@ public interface IProfileOptionModuleMapper {
     @Mapping(target = "privileges", source = "posPrivileges")
     @Mapping(target = "createDate", source = "posCreateDate")
     @Mapping(target = "updateDate", source = "posUpdateDate")
+    @Mapping(target = "modules", ignore = true)
     ProfileOptionModuleDto mapperToDto(EpProfileOptionModuleEntity source);
 
     List<ProfileOptionModuleDto> mapperToList(Iterable<EpProfileOptionModuleEntity> entities);
