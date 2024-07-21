@@ -30,6 +30,7 @@ public class HhVvAeroGraphDto implements Serializable {
 
     private static final long serialVersionUID = -1329748408303868021L;
     private Long id;
+    private Long unit;
     private String typeManto;
     private String division;
     private double count;

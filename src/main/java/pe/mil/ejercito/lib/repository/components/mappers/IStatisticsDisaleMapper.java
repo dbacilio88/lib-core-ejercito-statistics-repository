@@ -72,6 +72,7 @@ public interface IStatisticsDisaleMapper {
 
     @Mapping(target = "stCreatedDate", source = "created")
     @Mapping(target = "stUpdatedDate", source = "updated")
+
     EpStatisticsDisaleEntity mapperToEntity(StatisticsDisaleDto source);
 
     @Mapping(target = "id", source = "id")

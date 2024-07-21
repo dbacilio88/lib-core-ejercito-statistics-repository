@@ -79,12 +79,65 @@ public class EpDocumentRegisterEntity {
     @Column(name = "DR_UPDATED_DATE")
     private Instant drUpdatedDate;
 
-    @Builder.Default
-    @ToString.Exclude
     @OneToMany(mappedBy = "staDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @Builder.Default
     private Set<EpStatisticsAeEntity> epStatisticsAes = new LinkedHashSet<>();
 
-    //TODO implementar entidades relacionadas a esta.
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stcDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsCoadneEntity> epStatisticsCoadnes = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDeEntity> epStatisticsDes = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDiciteceEntity> epStatisticsDiciteces = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDieEntity> epStatisticsDies = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDilogeEntity> epStatisticsDiloges = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDinveEntity> epStatisticsDinves = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDiplaneEntity> epStatisticsDiplanes = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stdDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDiradneEntity> epStatisticsDiradnes = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsDisaleEntity> epStatisticsDisales = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsOajeEntity> epStatisticsOajes = new LinkedHashSet<>();
+
+    @Builder.Default
+    @ToString.Exclude
+    @OneToMany(mappedBy = "stDocument", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<EpStatisticsOeeEntity> epStatisticsOees = new LinkedHashSet<>();
 
 
 }

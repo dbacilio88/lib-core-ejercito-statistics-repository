@@ -85,4 +85,7 @@ public class EpMantoAeroGraphView {
     @Column(name = "MAGV_DIC")
     private Double magvDic;
 
+    @Column(name = "MAGV_UNIT")
+    private Long magvUnit;
+
 }

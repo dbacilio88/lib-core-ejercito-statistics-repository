@@ -1,4 +1,4 @@
-package pe.mil.ejercito.lib.repository.components.mappers;
+package pe.mil.ejercito.lib.repository.components.mappers.view;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -33,6 +33,8 @@ public interface IDocumentationDivisionMapper {
     @Mapping(target = "brigade", source = "ddvBrigadeName")
     @Mapping(target = "unit", source = "ddvUnitName")
     @Mapping(target = "periods", source = "ddvPeriods")
+    @Mapping(target = "unitId", source = "ddvUnitId")
+    @Mapping(target = "typeRegister", source = "ddvTypeRegister")
     DocumentationDivisionDto mapperToDto(EpDocumentationDivisionView source);
 
     List<DocumentationDivisionDto> mapperToList(Iterable<EpDocumentationDivisionView> entities);

@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import pe.mil.ejercito.lib.repository.repositories.entities.EpStatisticsAeEntity;
 
 import java.util.Optional;
@@ -25,7 +24,7 @@ import java.util.Optional;
  * @since 19/05/2024
  */
 
-@Transactional
+//@Transactional
 @Repository
 public interface IEpStatisticsAeRepository extends JpaRepository<EpStatisticsAeEntity, Long> {
 

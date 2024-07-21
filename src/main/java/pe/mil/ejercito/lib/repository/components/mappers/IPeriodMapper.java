@@ -34,6 +34,8 @@ public interface IPeriodMapper {
     @Mapping(target = "peName", source = "name")
     @Mapping(target = "peDescription", source = "description")
     @Mapping(target = "epDocumentRegisters", ignore = true)
+    @Mapping(target = "peDateInit", ignore = true)
+    @Mapping(target = "peDateEnd", ignore = true)
     EpPeriodEntity mapperToEntity(PeriodDto source);
 
     @Mapping(target = "id", source = "id")

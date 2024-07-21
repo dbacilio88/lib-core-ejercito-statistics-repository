@@ -1,4 +1,4 @@
-package pe.mil.ejercito.lib.repository.components.mappers;
+package pe.mil.ejercito.lib.repository.components.mappers.view;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -29,6 +29,7 @@ import java.util.List;
 )
 public interface IHhVvAeroGraphMapper {
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "unit", source = "magvUnit")
     @Mapping(target = "typeManto", source = "magvTypeManto")
     @Mapping(target = "division", source = "magvDivision")
     @Mapping(target = "count", source = "magvCount")

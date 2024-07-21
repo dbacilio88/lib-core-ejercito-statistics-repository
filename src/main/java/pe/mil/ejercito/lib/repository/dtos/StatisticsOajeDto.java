@@ -1,10 +1,10 @@
 package pe.mil.ejercito.lib.repository.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * StatisticsOajeDto
@@ -19,85 +19,104 @@ import java.io.Serializable;
  * @author cbaciliod@ejercito.mil
  * @since 19/05/2024
  */
+@ToString
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StatisticsOajeDto extends StatisticsBaseDto implements Serializable {
+public class StatisticsOajeDto implements Serializable {
 
     private static final long serialVersionUID = -2570922323177277888L;
 
-    private String oSituation;
-    private String oSituationPersonal;
+    private String situation;
+    private String situationPersonal;
 
-    private Double oEneA;
-    private Double oEneB;
-    private Double oEneC;
-    private Double oEneD;
-    private Double oEneE;
+    private Double eneA;
+    private Double eneB;
+    private Double eneC;
+    private Double eneD;
+    private Double eneE;
 
-    private Double oFebA;
-    private Double oFebB;
-    private Double oFebC;
-    private Double oFebD;
-    private Double oFebE;
+    private Double febA;
+    private Double febB;
+    private Double febC;
+    private Double febD;
+    private Double febE;
 
-    private Double oMarA;
-    private Double oMarB;
-    private Double oMarC;
-    private Double oMarD;
-    private Double oMarE;
+    private Double marA;
+    private Double marB;
+    private Double marC;
+    private Double marD;
+    private Double marE;
 
-    private Double oAbrA;
-    private Double oAbrB;
-    private Double oAbrC;
-    private Double oAbrD;
-    private Double oAbrE;
+    private Double abrA;
+    private Double abrB;
+    private Double abrC;
+    private Double abrD;
+    private Double abrE;
 
-    private Double oMayA;
-    private Double oMayB;
-    private Double oMayC;
-    private Double oMayD;
-    private Double oMayE;
+    private Double mayA;
+    private Double mayB;
+    private Double mayC;
+    private Double mayD;
+    private Double mayE;
 
-    private Double oJunA;
-    private Double oJunB;
-    private Double oJunC;
-    private Double oJunD;
-    private Double oJunE;
+    private Double junA;
+    private Double junB;
+    private Double junC;
+    private Double junD;
+    private Double junE;
 
-    private Double oJulA;
-    private Double oJulB;
-    private Double oJulC;
-    private Double oJulD;
-    private Double oJulE;
+    private Double julA;
+    private Double julB;
+    private Double julC;
+    private Double julD;
+    private Double julE;
 
-    private Double oAgoA;
-    private Double oAgoB;
-    private Double oAgoC;
-    private Double oAgoD;
-    private Double oAgoE;
+    private Double agoA;
+    private Double agoB;
+    private Double agoC;
+    private Double agoD;
+    private Double agoE;
 
-    private Double oSetA;
-    private Double oSetB;
-    private Double oSetC;
-    private Double oSetD;
-    private Double oSetE;
+    private Double septA;
+    private Double septB;
+    private Double septC;
+    private Double septD;
+    private Double septE;
 
-    private Double oOctA;
-    private Double oOctB;
-    private Double oOctC;
-    private Double oOctD;
-    private Double oOctE;
+    private Double octA;
+    private Double octB;
+    private Double octC;
+    private Double octD;
+    private Double octE;
 
-    private Double oNovA;
-    private Double oNovB;
-    private Double oNovC;
-    private Double oNovD;
-    private Double oNovE;
+    private Double novA;
+    private Double novB;
+    private Double novC;
+    private Double novD;
+    private Double novE;
 
-    private Double oDicA;
-    private Double oDicB;
-    private Double oDicC;
-    private Double oDicD;
-    private Double oDicE;
+    private Double dicA;
+    private Double dicB;
+    private Double dicC;
+    private Double dicD;
+    private Double dicE;
+
+    private Long id;
+    private String uuId;
+    private String document;
+    private String place;
+    private String division;
+    private String dependency;
+    private String otherState;
+    private String nro;
+    private double total;
+    private String typeSheet;
+    private String nameSheet;
+    private String obs;
+    private Instant created;
+    private Instant updated;
 }

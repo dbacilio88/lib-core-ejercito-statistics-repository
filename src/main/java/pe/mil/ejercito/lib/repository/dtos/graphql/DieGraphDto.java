@@ -1,15 +1,14 @@
-package pe.mil.ejercito.lib.repository.dtos;
+package pe.mil.ejercito.lib.repository.dtos.graphql;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
 /**
- * StatisticsDateDto
+ * DieGraphDto
  * <p>
- * StatisticsDateDto class.
+ * DieGraphDto interface.
  * <p>
  * THIS COMPONENT WAS BUILT ACCORDING TO THE DEVELOPMENT STANDARDS
  * AND THE EJERCITO DEL PERÚ APPLICATION DEVELOPMENT PROCEDURE AND IS PROTECTED
@@ -22,10 +21,20 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StatisticsDateDto extends StatisticsBaseDto implements Serializable {
+public class DieGraphDto implements Serializable {
+    private static final long serialVersionUID = -1893796805910324897L;
+    private Long id;
+    private Long unit;
+    private String action;
+    private String typesMeasurements;
+    private String type;
+    private String activity;
 
-    private static final long serialVersionUID = -2570922323177277888L;
     private double ene;
     private double feb;
     private double mar;
@@ -38,5 +47,4 @@ public class StatisticsDateDto extends StatisticsBaseDto implements Serializable
     private double oct;
     private double nov;
     private double dic;
-
 }

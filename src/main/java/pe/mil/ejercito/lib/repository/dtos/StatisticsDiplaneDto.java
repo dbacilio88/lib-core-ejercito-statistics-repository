@@ -1,10 +1,10 @@
 package pe.mil.ejercito.lib.repository.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * StatisticsDiplaneDto
@@ -19,10 +19,14 @@ import java.io.Serializable;
  * @author cbaciliod@ejercito.mil
  * @since 19/05/2024
  */
+@ToString
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class StatisticsDiplaneDto extends StatisticsBaseDto implements Serializable {
+public class StatisticsDiplaneDto implements Serializable {
 
     private static final long serialVersionUID = -2570922323177277888L;
 
@@ -36,6 +40,20 @@ public class StatisticsDiplaneDto extends StatisticsBaseDto implements Serializa
     private double processLevel1;
     private double processLevel2;
     private double processTotal;
+    private Long id;
+    private String uuId;
+    private String document;
+    private String place;
+    private String division;
+    private String dependency;
+    private String otherState;
+    private String nro;
+    private double total;
+    private String typeSheet;
+    private String nameSheet;
+    private String obs;
+    private Instant created;
+    private Instant updated;
 
 
 }

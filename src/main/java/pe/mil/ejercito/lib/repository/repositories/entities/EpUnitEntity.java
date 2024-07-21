@@ -73,6 +73,11 @@ public class EpUnitEntity {
     @Column(name = "UN_UPDATED_DATE")
     private Instant unUpdatedDate;
 
+    @ToString.Exclude
+    @Builder.Default
+    @OneToMany(mappedBy = "usUnit")
+    private Set<EpUserEntity> epUsers = new LinkedHashSet<>();
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "UN_STATUS", nullable = false)
@@ -97,5 +102,6 @@ public class EpUnitEntity {
     @Builder.Default
     @OneToMany(mappedBy = "ucUnit")
     private Set<EpUnitConfigurationEntity> epUnitConfigurations = new LinkedHashSet<>();
+
 
 }

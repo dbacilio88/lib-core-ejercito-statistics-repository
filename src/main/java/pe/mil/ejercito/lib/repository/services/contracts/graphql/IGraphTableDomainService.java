@@ -27,7 +27,7 @@ public interface IGraphTableDomainService {
 
     Mono<List<CuadroAeroDataDto>> getAllMantoAeroData(String type);
 
-    Mono<List<MantoAeroGraphDto>> getAllMantoAeroGraph(String type);
+    Mono<List<MantoAeroGraphDto>> getAllMantoAeroGraph(String type, Long unit);
 
-    Mono<List<HhVvAeroGraphDto>> getAllHhVvAeroGraph(String type);
+    Mono<List<HhVvAeroGraphDto>> getAllHhVvAeroGraph(String type, Long unit);
 }

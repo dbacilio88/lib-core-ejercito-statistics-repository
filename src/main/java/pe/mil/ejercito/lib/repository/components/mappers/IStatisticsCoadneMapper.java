@@ -61,6 +61,7 @@ public interface IStatisticsCoadneMapper {
     @Mapping(target = "stcAcTypeOfCivicAction", source = "acTypeOfCivicAction")
     @Mapping(target = "stCreatedDate", source = "created")
     @Mapping(target = "stUpdatedDate", source = "updated")
+
     EpStatisticsCoadneEntity mapperToEntity(StatisticsCoadneDto source);
 
     @Mapping(target = "id", source = "id")

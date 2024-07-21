@@ -38,6 +38,17 @@ public interface IDocumentRegisterMapper {
     @Mapping(target = "drCreatedDate", source = "created")
     @Mapping(target = "drUpdatedDate", source = "updated")
     @Mapping(target = "epStatisticsAes", ignore = true)
+    @Mapping(target = "epStatisticsCoadnes", ignore = true)
+    @Mapping(target = "epStatisticsDes", ignore = true)
+    @Mapping(target = "epStatisticsDiciteces", ignore = true)
+    @Mapping(target = "epStatisticsDies", ignore = true)
+    @Mapping(target = "epStatisticsDiloges", ignore = true)
+    @Mapping(target = "epStatisticsDinves", ignore = true)
+    @Mapping(target = "epStatisticsDiplanes", ignore = true)
+    @Mapping(target = "epStatisticsDisales", ignore = true)
+    @Mapping(target = "epStatisticsOajes", ignore = true)
+    @Mapping(target = "epStatisticsOees", ignore = true)
+    @Mapping(target = "epStatisticsDiradnes", ignore = true)
     EpDocumentRegisterEntity mapperToEntity(DocumentRegisterDto source);
 
     @Mapping(target = "id", source = "id")

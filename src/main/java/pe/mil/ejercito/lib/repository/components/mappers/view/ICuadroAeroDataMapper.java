@@ -1,4 +1,4 @@
-package pe.mil.ejercito.lib.repository.components.mappers;
+package pe.mil.ejercito.lib.repository.components.mappers.view;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

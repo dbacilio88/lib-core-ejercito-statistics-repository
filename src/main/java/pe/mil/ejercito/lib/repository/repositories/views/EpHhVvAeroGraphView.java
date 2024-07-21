@@ -48,4 +48,7 @@ public class EpHhVvAeroGraphView {
     @Column(name = "MAGV_COUNT")
     private Double magvCount;
 
+    @Column(name = "MAGV_UNIT")
+    private Long magvUnit;
+
 }

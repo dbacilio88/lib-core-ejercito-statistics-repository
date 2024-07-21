@@ -29,6 +29,7 @@ import java.io.Serializable;
 public class MantoAeroGraphDto implements Serializable {
     private static final long serialVersionUID = -1893796805910324897L;
     private Long id;
+    private Long unit;
     private String typeManto;
     private String maintenance;
     private String typeHelicopter;

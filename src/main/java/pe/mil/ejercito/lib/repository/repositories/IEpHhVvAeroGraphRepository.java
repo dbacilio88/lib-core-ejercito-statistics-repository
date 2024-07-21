@@ -24,6 +24,6 @@ import java.util.List;
 @Repository
 public interface IEpHhVvAeroGraphRepository extends JpaRepository<EpHhVvAeroGraphView, Long> {
 
-    @Query(value = "SELECT vag FROM EpHhVvAeroGraphView vag WHERE vag.magvTypeManto = :type")
-    List<EpHhVvAeroGraphView> findAll(@Param("type") String type);
+    @Query(value = "SELECT vag FROM EpHhVvAeroGraphView vag WHERE vag.magvTypeManto = :type AND vag.magvUnit = :unit")
+    List<EpHhVvAeroGraphView> findAll(@Param("type") String type,@Param("unit") Long unit);
 }

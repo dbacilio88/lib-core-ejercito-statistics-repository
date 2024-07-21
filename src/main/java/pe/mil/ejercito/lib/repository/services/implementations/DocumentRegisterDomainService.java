@@ -177,32 +177,29 @@ public class DocumentRegisterDomainService extends ReactorServiceBase implements
                 }
 
                 final Optional<EpDocumentRegisterEntity> documentRegisterEntity = this.documentRegisterRepository.findByUuId(request.getUuId());
-                log.info("documentRegisterEntity {}", documentRegisterEntity);
                 if (documentRegisterEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
                 final Optional<EpUnitEntity> unitEntity = this.unitRepository.findByUuId(request.getUnit());
-                log.info("unitEntity {}", unitEntity);
                 if (unitEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
 
                 final Optional<EpTypeRegisterEntity> typeRegisterEntity = this.typeRegisterRepository.findByUuId(request.getTypeRegister());
-                log.info("typeRegisterEntity {}", typeRegisterEntity);
                 if (typeRegisterEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
                 final Optional<EpPeriodEntity> periodEntity = this.periodRepository.findByUuId(request.getPeriod());
-                log.info("periodEntity {}", periodEntity);
+
                 if (periodEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
                 }
                 final Optional<EpDocumentStatusEntity> documentStatusEntity = this.documentStatusRepository.findByDsCode(request.getStatus());
-                log.info("documentStatusEntity {}", documentStatusEntity);
+
                 if (documentStatusEntity.isEmpty()) {
                     log.error(MICROSERVICE_SERVICE_DOMAIN_ENTITY_UPDATE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR);
                     return Mono.error(() -> new CommonException(MICROSERVICE_SERVICE_DOMAIN_ENTITY_SAVE_FIND_BY_UUID_NOT_EXIST_FORMAT_ERROR, ResponseEnum.NOT_FOUNT_ENTITY, List.of(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_BY_UUID_INVALID_FORMAT_ERROR)));
@@ -220,7 +217,6 @@ public class DocumentRegisterDomainService extends ReactorServiceBase implements
                 entityResult.setDrTypeRegister(typeRegisterEntity.get());
                 entityResult.setDrPeriod(periodEntity.get());
                 entityResult.setDrStatus(documentStatusEntity.get());
-                log.info("entityResult {}", entityResult);
                 return Mono.just(this.documentRegisterMapper.mapperToDto(entityResult));
             }).doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_ON_UPDATE_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));

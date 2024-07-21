@@ -2,10 +2,10 @@ package pe.mil.ejercito.lib.repository.services.implementations.graphql;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import pe.mil.ejercito.lib.repository.components.mappers.ICuadroAeroDataMapper;
-import pe.mil.ejercito.lib.repository.components.mappers.IDocumentationDivisionMapper;
-import pe.mil.ejercito.lib.repository.components.mappers.IHhVvAeroGraphMapper;
-import pe.mil.ejercito.lib.repository.components.mappers.IMantoAeroGraphMapper;
+import pe.mil.ejercito.lib.repository.components.mappers.view.ICuadroAeroDataMapper;
+import pe.mil.ejercito.lib.repository.components.mappers.view.IDocumentationDivisionMapper;
+import pe.mil.ejercito.lib.repository.components.mappers.view.IHhVvAeroGraphMapper;
+import pe.mil.ejercito.lib.repository.components.mappers.view.IMantoAeroGraphMapper;
 import pe.mil.ejercito.lib.repository.dtos.graphql.CuadroAeroDataDto;
 import pe.mil.ejercito.lib.repository.dtos.graphql.DocumentationDivisionDto;
 import pe.mil.ejercito.lib.repository.dtos.graphql.HhVvAeroGraphDto;
@@ -90,20 +90,18 @@ public class GraphTableDomainService extends ReactorServiceBase implements IGrap
     }
 
     @Override
-    public Mono<List<MantoAeroGraphDto>> getAllMantoAeroGraph(String type) {
-        final Iterable<EpMantoAeroGraphView> persistenceEntities = this.mantoAeroGraphRepository.findAll(type);
+    public Mono<List<MantoAeroGraphDto>> getAllMantoAeroGraph(String type, Long unit) {
+        final Iterable<EpMantoAeroGraphView> persistenceEntities = this.mantoAeroGraphRepository.findAll(type, unit);
         final List<MantoAeroGraphDto> list = this.mantoAeroGraphMapper.mapperToList(persistenceEntities);
-        log.info("MantoAeroGraphDto {}", list);
         return Mono.just(list)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));
     }
 
     @Override
-    public Mono<List<HhVvAeroGraphDto>> getAllHhVvAeroGraph(String type) {
-        final Iterable<EpHhVvAeroGraphView> persistenceEntities = this.hhVvAeroGraphRepository.findAll(type);
+    public Mono<List<HhVvAeroGraphDto>> getAllHhVvAeroGraph(String type, Long unit) {
+        final Iterable<EpHhVvAeroGraphView> persistenceEntities = this.hhVvAeroGraphRepository.findAll(type, unit);
         final List<HhVvAeroGraphDto> list = this.hhVvAeroGraphMapper.mapperToList(persistenceEntities);
-        log.info("HhVvAeroGraphDto {}", list);
         return Mono.just(list)
             .doOnSuccess(success -> log.debug(MICROSERVICE_SERVICE_DOMAIN_ENTITY_FIND_ALL_FORMAT_SUCCESS))
             .doOnError(throwable -> log.error(throwable.getMessage()));

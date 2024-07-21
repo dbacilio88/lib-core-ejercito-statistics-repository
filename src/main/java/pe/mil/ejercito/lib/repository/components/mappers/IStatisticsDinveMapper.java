@@ -65,6 +65,7 @@ public interface IStatisticsDinveMapper {
 
     @Mapping(target = "stCreatedDate", source = "created")
     @Mapping(target = "stUpdatedDate", source = "updated")
+
     EpStatisticsDinveEntity mapperToEntity(StatisticsDinveDto source);
 
     @Mapping(target = "id", source = "id")

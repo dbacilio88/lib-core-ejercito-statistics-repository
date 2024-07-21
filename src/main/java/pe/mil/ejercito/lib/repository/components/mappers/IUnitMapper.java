@@ -41,6 +41,7 @@ public interface IUnitMapper {
     @Mapping(target = "epDivisions", ignore = true)
     @Mapping(target = "epUnitConfigurations", ignore = true)
     @Mapping(target = "epDocumentRegisters", ignore = true)
+    @Mapping(target = "epUsers", ignore = true)
     EpUnitEntity mapperToEntity(UnitDto source);
 
     @Mapping(target = "id", source = "id")

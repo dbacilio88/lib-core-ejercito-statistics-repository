@@ -52,4 +52,11 @@ public class EpDocumentationDivisionView {
     @Column(name = "DDV_PERIODS")
     private Long ddvPeriods;
 
+    @Column(name = "DDV_UNIT_ID")
+    private Long ddvUnitId;
+
+    @Size(max = 36)
+    @Column(name = "DDV_TYPE_REGISTER", length = 36)
+    private String ddvTypeRegister;
+
 }

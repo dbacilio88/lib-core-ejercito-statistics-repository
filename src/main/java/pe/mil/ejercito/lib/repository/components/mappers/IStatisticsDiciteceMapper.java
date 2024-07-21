@@ -68,10 +68,9 @@ public interface IStatisticsDiciteceMapper {
     @Mapping(target = "stdAgreementsPersonalIdOO", source = "agreementsPersonalIdOO")
     @Mapping(target = "stdAgreementsPersonalIdTcos", source = "agreementsPersonalIdTcos")
     @Mapping(target = "stdAgreementsPersonalIdCivil", source = "agreementsPersonalIdCivil")
-
-
     @Mapping(target = "stCreatedDate", source = "created")
     @Mapping(target = "stUpdatedDate", source = "updated")
+
     EpStatisticsDiciteceEntity mapperToEntity(StatisticsDiciteceDto source);
 
     @Mapping(target = "id", source = "id")

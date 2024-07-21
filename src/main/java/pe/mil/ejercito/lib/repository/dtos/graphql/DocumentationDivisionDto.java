@@ -31,5 +31,7 @@ public class DocumentationDivisionDto implements Serializable {
     private String division;
     private String brigade;
     private String unit;
+    private String unitId;
+    private String typeRegister;
     private Long periods;
 }

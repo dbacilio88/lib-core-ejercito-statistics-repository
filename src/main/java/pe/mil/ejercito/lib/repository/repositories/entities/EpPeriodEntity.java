@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -64,5 +65,11 @@ public class EpPeriodEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "drPeriod")
     private Set<EpDocumentRegisterEntity> epDocumentRegisters = new LinkedHashSet<>();
+
+    @Column(name = "pe_date_init")
+    private Instant peDateInit;
+
+    @Column(name = "pe_date_end")
+    private Instant peDateEnd;
 
 }
